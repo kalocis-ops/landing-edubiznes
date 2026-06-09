@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orbit Demo — Od Tablicy do Biznesu Online</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #001f5c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    overflow: hidden;
+  }
+  canvas {
+    display: block;
+    cursor: default;
+  }
+  #tooltip {
+    position: fixed;
+    background: rgba(0,31,92,0.95);
+    color: #fff;
+    border: 1px solid #44d498;
+    border-radius: 12px;
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 500;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 10;
+    max-width: 200px;
+    text-align: center;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="tooltip"></div>
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+const tooltip = document.getElementById('tooltip');
+
+// ── CONFIG ────────────────────────────────────────────────────────────
+const RX_FRAC = 0.34;   // orbit half-width as fraction of canvas width
+const RY_FRAC = 0.13;   // orbit half-height (perspective depth)
+const CARD_W = 200;
+const CARD_H = 140;
+const SPEED = 0.00035;  // radians per ms
+
+// ── CARD DATA ─────────────────────────────────────────────────────────
+const cards = [
+  { label: 'Kurs Online',      src: 'assets/orbit-images/laptop-course.png',   text: 'Stwórz kurs w 30 dni' },
+  { label: 'Wzrost Dochodów',  src: 'assets/orbit-images/income-growth.png',   text: '5 000–20 000 zł/mies.' },
+  { label: 'Przestrzeń Pracy', src: 'assets/orbit-images/teacher-desk.png',    text: 'Twój własny rytm' },
+  { label: 'Narzędzia AI',     src: 'assets/orbit-images/ai-chat.png',         text: 'AI dla nauczyciela' },
+  { label: 'Społeczność',      src: 'assets/orbit-images/community.png',       text: '130 000 obserwujących' },
+  { label: 'Certyfikat',       src: 'assets/orbit-images/certificate.png',     text: 'Google Educator II st.' },
+  { label: 'Webinar Live',     src: 'assets/orbit-images/webinar-stage.png',   text: '30 czerwca · 20:00' },
+];
+
+const N = cards.length;
+let state = cards.map((card, i) => ({
+  angle: (2 * Math.PI * i) / N + Math.PI * 0.15,
+  card,
+  hovered: false,
+  scale: 1,
+  img: null,
+  loaded: false,
+}));
+
+// ── KLAUDIA IMAGE ─────────────────────────────────────────────────────
+const klaudiaImg = new Image();
+klaudiaImg.src = '2O9A0761.jpg';
+
+// Preload all card images — rebuild cache when each loads
+state.forEach(s => {
+  const img = new Image();
+  img.onload = () => { s.img = img; s.loaded = true; buildCache(); };
+  img.onerror = () => { s.loaded = false; };
+  img.src = s.card.src;
+});
+
+// ── OFFSCREEN CARD CACHE ──────────────────────────────────────────────
+const cardCache = [];
+
+function roundRect(c, x, y, w, h, r) {
+  c.beginPath();
+  c.moveTo(x + r, y);
+  c.lineTo(x + w - r, y);
+  c.arcTo(x + w, y, x + w, y + r, r);
+  c.lineTo(x + w, y + h - r);
+  c.arcTo(x + w, y + h, x + w - r, y + h, r);
+  c.lineTo(x + r, y + h);
+  c.arcTo(x, y + h, x, y + h - r, r);
+  c.lineTo(x, y + r);
+  c.arcTo(x, y, x + r, y, r);
+  c.closePath();
+}
+
+function makeCardCanvas(s, w, h) {
+  const oc = document.createElement('canvas');
+  oc.width = w * 2; oc.height = h * 2;
+  const c = oc.getContext('2d');
+  c.scale(2, 2);
+
+  // Rounded clip
+  roundRect(c, 0, 0, w, h, 14);
+  c.clip();
+
+  if (s.img) {
+    // Draw photo filling the card (cover fit)
+    const iw = s.img.naturalWidth, ih = s.img.naturalHeight;
+    const scale = Math.max(w / iw, h / ih);
+    const dw = iw * scale, dh = ih * scale;
+    c.drawImage(s.img, (w - dw) / 2, (h - dh) / 2, dw, dh);
+  } else {
+    // Fallback gradient
+    const grad = c.createLinearGradient(0, 0, w, h);
+    grad.addColorStop(0, '#1a4a8a');
+    grad.addColorStop(1, '#001238');
+    c.fillStyle = grad;
+    c.fillRect(0, 0, w, h);
+  }
+
+  // Dark overlay gradient at bottom for label readability
+  const overlay = c.createLinearGradient(0, h * 0.55, 0, h);
+  overlay.addColorStop(0, 'rgba(0,15,50,0)');
+  overlay.addColorStop(1, 'rgba(0,15,50,0.82)');
+  c.fillStyle = overlay;
+  c.fillRect(0, 0, w, h);
+
+  // Label
+  c.fillStyle = '#ffffff';
+  c.font = `bold 13px "Segoe UI", system-ui, sans-serif`;
+  c.textAlign = 'center';
+  c.textBaseline = 'alphabetic';
+  c.fillText(s.card.label, w / 2, h - 26);
+
+  c.fillStyle = '#44d498';
+  c.font = `11px "Segoe UI", system-ui, sans-serif`;
+  c.fillText(s.card.text, w / 2, h - 10);
+
+  return oc;
+}
+
+function buildCache() {
+  cardCache.length = 0;
+  for (const s of state) cardCache.push(makeCardCanvas(s, CARD_W, CARD_H));
+}
+buildCache();
+
+
+// ── RESIZE ────────────────────────────────────────────────────────────
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  buildCache();
+}
+resize();
+window.addEventListener('resize', resize);
+
+// ── DRAW LOOP ─────────────────────────────────────────────────────────
+let last = 0;
+let hoveredIndex = -1;
+
+function draw(ts) {
+  const dt = Math.min(ts - last, 40);
+  last = ts;
+
+  const W = canvas.width;
+  const H = canvas.height;
+  const cx = W / 2;
+  const cy = H / 2;
+  const rx = W * RX_FRAC;
+  const ry = H * RY_FRAC;
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Faint orbit guide
+  ctx.save();
+  ctx.strokeStyle = 'rgba(68,212,152,0.07)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.restore();
+
+  // Advance angles + smooth scale
+  for (const s of state) {
+    s.angle += SPEED * dt;
+    const target = s.hovered ? 1.18 : 1;
+    s.scale += (target - s.scale) * 0.12;
+  }
+
+  // Sort back-to-front
+  const sorted = state.map((s, i) => {
+    const x = cx + rx * Math.cos(s.angle);
+    const y = cy + ry * Math.sin(s.angle);
+    return { s, i, x, y };
+  }).sort((a, b) => a.y - b.y);
+
+  // Draw orbit cards
+  for (const { s, i, x, y } of sorted) {
+    const depth = (Math.sin(s.angle) + 1) / 2;
+    const alpha = 0.35 + depth * 0.65;
+    const scaleDepth = 0.55 + depth * 0.45;
+    const finalScale = scaleDepth * s.scale;
+    const cw = CARD_W * finalScale;
+    const ch = CARD_H * finalScale;
+
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.drawImage(cardCache[i], x - cw / 2, y - ch / 2, cw, ch);
+    ctx.restore();
+  }
+
+  // ── Central Klaudia photo ──────────────────────────────────────────
+  if (klaudiaImg.complete && klaudiaImg.naturalWidth > 0) {
+    const r = Math.min(W * 0.145, H * 0.24);
+
+    // Glow halo
+    ctx.save();
+    const glow = ctx.createRadialGradient(cx, cy, r * 0.4, cx, cy, r * 1.3);
+    glow.addColorStop(0, 'rgba(68,212,152,0.2)');
+    glow.addColorStop(1, 'rgba(68,212,152,0)');
+    ctx.fillStyle = glow;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r * 1.3, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    // Clip circular
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.clip();
+    const aspect = klaudiaImg.naturalHeight / klaudiaImg.naturalWidth;
+    const diam = r * 2;
+    const imgH = diam * aspect;
+    const offsetY = Math.min(0, (diam - imgH) / 2);
+    ctx.drawImage(klaudiaImg, cx - r, cy - r + offsetY, diam, imgH);
+    ctx.restore();
+
+    // Mint ring
+    ctx.save();
+    ctx.strokeStyle = '#44d498';
+    ctx.lineWidth = 2.5;
+    ctx.globalAlpha = 0.7;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+
+    // Name
+    const fontSize = Math.max(12, r * 0.13);
+    ctx.save();
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#ffffff';
+    ctx.font = `bold ${fontSize}px "Segoe UI", system-ui`;
+    ctx.fillText('Klaudia Rogalska-Kalota', cx, cy + r + fontSize * 1.6);
+    ctx.fillStyle = '#44d498';
+    ctx.font = `${Math.max(10, fontSize * 0.85)}px "Segoe UI", system-ui`;
+    ctx.fillText('Webinar 30 czerwca · 20:00', cx, cy + r + fontSize * 3.0);
+    ctx.restore();
+  }
+
+  requestAnimationFrame(draw);
+}
+requestAnimationFrame(draw);
+
+// ── HIT TEST & HOVER ──────────────────────────────────────────────────
+function getHoveredIdx(mx, my) {
+  const W = canvas.width, H = canvas.height;
+  const cx = W / 2, cy = H / 2;
+  const rx = W * RX_FRAC, ry = H * RY_FRAC;
+
+  for (let i = 0; i < state.length; i++) {
+    const s = state[i];
+    const x = cx + rx * Math.cos(s.angle);
+    const y = cy + ry * Math.sin(s.angle);
+    const depth = (Math.sin(s.angle) + 1) / 2;
+    const scale = (0.55 + depth * 0.45) * s.scale;
+    const hw = (CARD_W * scale) / 2;
+    const hh = (CARD_H * scale) / 2;
+    if (mx >= x - hw && mx <= x + hw && my >= y - hh && my <= y + hh) return i;
+  }
+  return -1;
+}
+
+canvas.addEventListener('mousemove', e => {
+  const idx = getHoveredIdx(e.clientX, e.clientY);
+  if (idx !== hoveredIndex) {
+    if (hoveredIndex >= 0) state[hoveredIndex].hovered = false;
+    hoveredIndex = idx;
+    if (idx >= 0) state[idx].hovered = true;
+  }
+  if (idx >= 0) {
+    canvas.style.cursor = 'pointer';
+    tooltip.style.opacity = '1';
+    tooltip.textContent = cards[idx].label + ' — ' + cards[idx].text;
+    tooltip.style.left = (e.clientX + 16) + 'px';
+    tooltip.style.top = (e.clientY - 24) + 'px';
+  } else {
+    canvas.style.cursor = 'default';
+    tooltip.style.opacity = '0';
+  }
+});
+
+canvas.addEventListener('mouseleave', () => {
+  if (hoveredIndex >= 0) state[hoveredIndex].hovered = false;
+  hoveredIndex = -1;
+  tooltip.style.opacity = '0';
+  canvas.style.cursor = 'default';
+});
+</script>
+</body>
+</html>

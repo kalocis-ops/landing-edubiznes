@@ -1,0 +1,1929 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lekcja na Autopilocie | Klaudia Rogalska</title>
+  <meta name="description" content="Opanuj 6 platform quiz-AI w 120 minut i generuj angażujące aktywności na każdą lekcję. Kurs dla nauczycieli — Blooket, Gimkit, Quizwhizzer, Baamboozle, Wayground, Quizlet." />
+
+  <link rel="icon" type="image/png" href="ANO_podstawowa_jasna_pion.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #142d72;
+      --bg2:       #182f78;
+      --bg3:       #1c337e;
+      --bg4:       #203984;
+      --navy:      #20224d;
+      --navy-mid:  #2a2d62;
+      --green:     #3ab07f;
+      --green-l:   #51ebac;
+      --green-bg:  rgba(58,176,127,0.12);
+      --green-border: rgba(81,235,172,0.35);
+      --green-border-soft: rgba(58,176,127,0.2);
+      --muted:     rgba(255,255,255,0.5);
+      --text:      rgba(255,255,255,0.92);
+      --border:    rgba(81,235,172,0.18);
+      --border-dim: rgba(255,255,255,0.06);
+      --grad:      linear-gradient(135deg, #3ab07f 0%, #51ebac 100%);
+      --grad-nav:  linear-gradient(135deg, #20224d 0%, #3ab07f 100%);
+      --grad-bg:   linear-gradient(160deg, #0e2462 0%, #1a3580 45%, #122870 100%);
+      --radius:    16px;
+      --shadow:    0 24px 64px rgba(0,0,0,0.7);
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--grad-bg);
+      background-attachment: fixed;
+      color: var(--text);
+      font-family: 'Source Sans 3', sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4, h5 {
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      color: #fff;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+
+    /* ─── UTILITY ─── */
+    .grad-text {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-label {
+      display: inline-block;
+      font-size: .7rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 14px;
+      background: var(--green-bg);
+      border: 1px solid var(--green-border);
+      padding: 5px 14px; border-radius: 100px;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800; color: #fff; margin-bottom: 18px;
+    }
+    .section-sub {
+      font-size: 1.05rem; color: var(--muted);
+      max-width: 520px; line-height: 1.7;
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 15px 32px; border-radius: 100px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: .9rem; font-weight: 700;
+      transition: transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s;
+      cursor: pointer; border: none; text-decoration: none;
+    }
+    .btn:hover { transform: translateY(-2px) scale(1.01); }
+    .btn--green { background: var(--green); color: #fff; box-shadow: 0 4px 24px rgba(58,176,127,.35); }
+    .btn--green:hover { box-shadow: 0 8px 32px rgba(58,176,127,.5); }
+    .btn--ghost { background: transparent; color: rgba(255,255,255,.7); border: 1.5px solid var(--border); }
+    .btn--ghost:hover { border-color: rgba(255,255,255,.2); color: #fff; }
+    .btn--dark { background: rgba(255,255,255,.08); color: #fff; border: 1px solid var(--border); }
+
+    /* ─── TOP BAR ─── */
+    .top-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 102;
+      background: var(--navy);
+      height: 44px;
+      display: flex; align-items: center; justify-content: center; gap: 14px;
+      font-size: .78rem; color: rgba(255,255,255,.75);
+      font-family: 'Montserrat', sans-serif; font-weight: 600;
+      padding: 0 20px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .top-bar__cd {
+      display: flex; align-items: center; gap: 6px;
+      color: var(--green-l); font-weight: 800;
+    }
+    .top-bar__cd-unit { display: flex; align-items: baseline; gap: 2px; }
+    .top-bar__cd-unit span { font-size: .95rem; min-width: 22px; text-align: center; }
+    .top-bar__cd-unit em { font-style: normal; font-size: .65rem; color: rgba(255,255,255,.35); font-weight: 600; }
+    .top-bar__sep { color: rgba(255,255,255,.2); }
+    .top-bar__cta {
+      background: var(--green); color: #fff;
+      padding: 5px 14px; border-radius: 100px;
+      font-size: .74rem; font-weight: 700;
+      transition: opacity .2s; white-space: nowrap;
+    }
+    .top-bar__cta:hover { opacity: .85; }
+    @media (max-width: 480px) { .top-bar__cta { display: none; } }
+    @media (max-width: 380px) { .top-bar__label { display: none; } }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 44px; left: 0; right: 0; z-index: 100;
+      padding: 14px 0;
+      transition: background .3s, box-shadow .3s, backdrop-filter .3s;
+    }
+    nav.scrolled {
+      background: rgba(5,5,5,.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav__inner {
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .nav__logo img { height: 48px; width: auto; display: block; }
+    .nav__links {
+      display: flex; align-items: center; gap: 28px;
+      font-size: .87rem; color: var(--muted);
+      font-family: 'Montserrat', sans-serif; font-weight: 500;
+    }
+    .nav__links a:hover { color: #fff; }
+    .nav__cta {
+      background: var(--green); color: #fff;
+      padding: 9px 22px; border-radius: 100px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: .8rem; font-weight: 700;
+      transition: opacity .2s, transform .2s;
+      white-space: nowrap;
+    }
+    .nav__cta:hover { opacity: .9; transform: translateY(-1px); }
+    @media (max-width: 860px) { .nav__links { display: none; } }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      align-items: center;
+      gap: 40px;
+      padding: 160px 0 80px;
+      background: transparent;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -200px; right: -200px;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(58,176,127,.09), transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -100px; left: -100px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(32,34,77,.25), transparent 70%);
+      pointer-events: none;
+    }
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; padding: 144px 28px 60px; gap: 40px; }
+      .hero__right { order: -1; }
+      .hero__left { text-align: center; }
+      .hero__cta-row { justify-content: center; }
+      .hero__proof { justify-content: center; }
+    }
+
+    /* ─── HERO ENTRANCE ANIMATIONS ─── */
+    @keyframes hiPop {
+      0%   { opacity: 0; transform: scale(.4) translateY(24px); }
+      65%  { opacity: 1; transform: scale(1.06) translateY(-4px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    @keyframes hiPopRight {
+      0%   { opacity: 0; transform: scale(.5) translateX(40px); }
+      65%  { opacity: 1; transform: scale(1.04) translateX(-6px); }
+      100% { opacity: 1; transform: scale(1) translateX(0); }
+    }
+
+    .hi-1, .hi-2, .hi-3, .hi-4, .hi-5 {
+      opacity: 0;
+      animation-name: hiPop;
+      animation-fill-mode: both;
+      animation-timing-function: cubic-bezier(.34, 1.56, .64, 1);
+      animation-duration: .55s;
+    }
+    .hi-1 { animation-delay: .05s; }
+    .hi-2 { animation-delay: .16s; }
+    .hi-3 { animation-delay: .26s; }
+    .hi-4 { animation-delay: .36s; }
+    .hi-5 { animation-delay: .46s; }
+
+    /* mockup: wrapper animuje, img ma float osobno */
+    .hi-6 {
+      opacity: 0;
+      animation-name: hiPopRight;
+      animation-fill-mode: both;
+      animation-timing-function: cubic-bezier(.34, 1.56, .64, 1);
+      animation-duration: .65s;
+      animation-delay: .12s;
+    }
+
+    .hero__badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green-bg);
+      border: 1px solid var(--green-border);
+      border-radius: 100px; padding: 6px 14px;
+      font-size: .72rem; font-weight: 700; color: var(--green);
+      margin-bottom: 24px; letter-spacing: .06em; text-transform: uppercase;
+    }
+    .hero__badge-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .4; transform: scale(.75); }
+    }
+
+    .hero__course-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900; letter-spacing: -.03em;
+      line-height: 1; color: #fff;
+      margin-bottom: 10px;
+    }
+    .hero__course-name span {
+      background: var(--grad); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero__title {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 600; color: var(--muted);
+      margin-bottom: 28px; line-height: 1.5;
+      letter-spacing: 0;
+    }
+
+    /* ─── HERO VIDEO PLAYER ─── */
+    .hero__video {
+      position: relative; width: 100%;
+      border-radius: 22px; overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,.55);
+      cursor: pointer;
+      animation: floatA 6s ease-in-out infinite;
+      will-change: transform;
+    }
+    .hero__video-thumb {
+      width: 100%; display: block;
+      border-radius: 22px;
+    }
+    .hero__video-overlay {
+      position: absolute; inset: 0;
+      background: rgba(4,5,20,.35);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 16px;
+      transition: background .3s;
+    }
+    .hero__video:hover .hero__video-overlay { background: rgba(4,5,20,.2); }
+    .hero__play {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: var(--green);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 0 0 rgba(58,176,127,.5);
+      animation: pulsePlay 2s ease-in-out infinite;
+      transition: transform .2s, background .2s;
+    }
+    .hero__video:hover .hero__play { transform: scale(1.12); background: #51ebac; }
+    @keyframes pulsePlay {
+      0%  { box-shadow: 0 0 0 0   rgba(58,176,127,.6); }
+      70% { box-shadow: 0 0 0 22px rgba(58,176,127,0); }
+      100%{ box-shadow: 0 0 0 0   rgba(58,176,127,0); }
+    }
+    .hero__play-icon { width:0; height:0; border-style:solid; border-width:12px 0 12px 22px; border-color:transparent transparent transparent #fff; margin-left:4px; }
+    .hero__video-label {
+      font-family: 'Montserrat', sans-serif; font-size: .7rem;
+      font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(255,255,255,.7); background: rgba(255,255,255,.1);
+      backdrop-filter: blur(8px); padding: 6px 14px; border-radius: 100px;
+      border: 1px solid rgba(255,255,255,.15);
+    }
+    .hero__video iframe { width:100%; aspect-ratio:16/9; border:none; display:block; }
+    .hero__sub {
+      font-size: 1.1rem; color: var(--muted);
+      margin-bottom: 36px; max-width: 480px; line-height: 1.7;
+    }
+    .hero__cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 36px; }
+
+    .hero__proof {
+      display: flex; align-items: center; gap: 14px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .hero__proof-avatars { display: flex; }
+    .hero__proof-avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--grad); border: 2px solid var(--bg);
+      margin-left: -8px; display: flex; align-items: center; justify-content: center;
+      font-size: .62rem; font-weight: 800; color: #fff;
+    }
+    .hero__proof-avatar:first-child { margin-left: 0; }
+    .hero__proof-text { font-size: .8rem; color: var(--muted); }
+    .hero__proof-text strong { color: #fff; font-weight: 700; }
+    .stars { color: #fbbf24; letter-spacing: 2px; font-size: .88rem; }
+
+    .hero__right { position: relative; z-index: 1; }
+    .hero__mockup-frame {
+      display: inline-block; width: 100%;
+      border-radius: 24px;
+      padding: 10px;
+      background: #3ab07f;
+      box-shadow: 0 0 32px rgba(58,176,127,0.35), 0 32px 72px rgba(0,0,0,0.45);
+      animation: floatA 6s ease-in-out infinite;
+    }
+    .hero__mockup-img {
+      width: 100%; max-width: 680px;
+      border-radius: 16px;
+      display: block;
+    }
+
+    .hero__float-card {
+      position: absolute;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 14px; padding: 10px 16px;
+      box-shadow: var(--shadow);
+      display: flex; align-items: center; gap: 10px;
+      font-size: .78rem; font-weight: 600; color: #fff;
+      white-space: nowrap; z-index: 2;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .hero__float-card--1 { top: 6%; right: -20px; animation: floatA 4s ease-in-out infinite; }
+    .hero__float-card--2 { bottom: 8%; right: -20px; animation: floatB 5s ease-in-out infinite; }
+    .hero__float-card--3 { top: 44%; right: -20px; animation: floatA 6s ease-in-out infinite .8s; }
+    @keyframes floatA { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes floatB { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+    .float-icon {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: var(--grad); display: flex; align-items: center; justify-content: center;
+      font-size: .85rem; flex-shrink: 0;
+    }
+    @media (max-width: 860px) {
+      .hero__float-card { display: none; }
+      .hero__right { display: flex; justify-content: center; }
+      .hero__mockup-img { max-width: 480px; }
+    }
+
+    /* ─── PLATFORMS BAR ─── */
+    .platforms-bar {
+      padding: 32px 0;
+      background: rgba(255,255,255,0.02);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .platforms-bar__label {
+      text-align: center; font-size: .68rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .platforms-bar__row {
+      display: flex; align-items: center;
+      justify-content: center; gap: 10px; flex-wrap: wrap;
+    }
+    .platform-chip {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 20px; background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border); border-radius: 100px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: .82rem; font-weight: 600; color: rgba(255,255,255,.7);
+    }
+    .platform-chip__dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+
+    /* ─── INSTRUCTOR SCROLL-PHOTO ─── */
+    .instructor { border-top: 1px solid var(--border); background: rgba(255,255,255,0.02); }
+    .instructor-header { max-width: 1160px; margin: 0 auto; padding: 80px 28px 0; }
+    .instructor__heading { font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 900; color: #fff; }
+    .sp-inner {
+      max-width: 1160px; margin: 0 auto; padding: 0 28px;
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .sp-sticky {
+      position: sticky; top: 0; height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 60px 40px 60px 0;
+    }
+    .sp-stack {
+      position: relative; width: 100%; max-width: 480px;
+      aspect-ratio: 3/4;
+    }
+    .sp-slide {
+      position: absolute; inset: 0; border-radius: 24px; overflow: hidden;
+      transform: translateY(70px) scale(.95);
+      opacity: 0;
+      transition: transform .75s cubic-bezier(.4,0,.2,1), opacity .75s cubic-bezier(.4,0,.2,1);
+      will-change: transform, opacity;
+      box-shadow: 0 32px 80px rgba(0,0,0,.6);
+    }
+    .sp-slide img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; display: block; }
+    .sp-slide.active { transform: translateY(0) scale(1); opacity: 1; z-index: 2; }
+    .sp-slide.prev   { transform: translateY(-50px) scale(.97); opacity: 0; z-index: 1; }
+    .sp-brand {
+      position: absolute; top: 20px; left: 20px;
+      z-index: 4;
+      background: transparent;
+      padding: 0;
+      display: flex; align-items: center; gap: 10px;
+      opacity: 0; transform: translateY(-8px);
+      transition: opacity .5s .2s, transform .5s .2s;
+    }
+    .sp-slide.active .sp-brand { opacity: 1; transform: translateY(0); }
+    .sp-brand__logo {
+      height: 28px; width: auto; display: block; flex-shrink: 0;
+      filter: brightness(0) invert(1) drop-shadow(0 1px 4px rgba(0,0,0,.35));
+    }
+    .sp-brand__divider { width: 1px; height: 22px; background: rgba(255,255,255,.5); flex-shrink: 0; }
+    .sp-brand__text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: .68rem; font-weight: 800;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: #fff; line-height: 1.35;
+      text-shadow: 0 1px 6px rgba(0,0,0,.4);
+    }
+    .sp-brand__text span { display: block; color: var(--green-l); }
+
+    .sp-badge {
+      position: absolute; bottom: 20px; left: 20px; right: 20px;
+      background: rgba(10,12,30,.75); backdrop-filter: blur(16px);
+      border: 1px solid rgba(81,235,172,.25); border-radius: 14px;
+      padding: 12px 16px; z-index: 3;
+      display: flex; align-items: center; gap: 10px;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity .5s .35s, transform .5s .35s;
+    }
+    .sp-slide.active .sp-badge { opacity: 1; transform: translateY(0); }
+    .sp-badge__icon {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--grad); display: flex; align-items: center;
+      justify-content: center; font-size: .9rem; flex-shrink: 0;
+    }
+    .sp-badge__text { font-family: 'Montserrat', sans-serif; font-size: .76rem; font-weight: 700; color: #fff; line-height: 1.3; }
+    .sp-badge__sub  { font-size: .68rem; color: rgba(255,255,255,.45); font-weight: 400; }
+    .sp-content {
+      padding: 100px 0 100px 40px;
+      display: flex; flex-direction: column;
+    }
+    .sp-item {
+      min-height: 75vh; display: flex; flex-direction: column;
+      justify-content: center; padding: 60px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .sp-item:last-child { border-bottom: none; }
+    .sp-item__num {
+      font-family: 'Montserrat', sans-serif; font-size: .65rem; font-weight: 800;
+      letter-spacing: .16em; text-transform: uppercase; color: var(--green); margin-bottom: 20px;
+    }
+    .sp-item__title {
+      font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 900; color: #fff;
+      line-height: 1.1; letter-spacing: -.02em; margin-bottom: 18px;
+    }
+    .sp-item__text { font-size: 1.05rem; color: var(--muted); line-height: 1.75; max-width: 440px; margin-bottom: 24px; }
+    .sp-item__stat {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,.05); border: 1px solid var(--border);
+      border-radius: 12px; padding: 12px 18px;
+      font-family: 'Montserrat', sans-serif; font-size: .85rem; font-weight: 700; color: rgba(255,255,255,.75);
+    }
+    .sp-item__stat strong {
+      font-size: 1.4rem;
+      background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    @media (max-width: 860px) {
+      .sp-inner { grid-template-columns: 1fr; }
+      .sp-sticky { display: none; }
+      .sp-content { padding: 60px 0; }
+      .sp-item { min-height: unset; padding: 36px 0; }
+    }
+
+    /* ─── PROBLEM ─── */
+    .problem { padding: 100px 0; background: transparent; border-top: 1px solid var(--border); }
+    .problem__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    @media (max-width: 768px) { .problem__grid { grid-template-columns: 1fr; } }
+    .pain-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 20px 0; border-bottom: 1px solid var(--border);
+    }
+    .pain-item:first-child { border-top: 1px solid var(--border); }
+    .pain-item__icon { border-color: var(--border); }
+    .pain-item__icon {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+      background: var(--bg2); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+    }
+    .pain-item__body {}
+    .pain-item__title { font-family: 'Montserrat', sans-serif; font-size: .9rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .pain-item__text { font-size: .9rem; color: var(--muted); line-height: 1.6; }
+    .problem__bridge {
+      grid-column: 1 / -1;
+      background: var(--navy); border-radius: 24px; padding: 48px 52px;
+      display: flex; align-items: center; gap: 40px; flex-wrap: wrap;
+      border: 1px solid rgba(58,176,127,.15);
+      position: relative; overflow: hidden;
+    }
+    .problem__bridge::before {
+      content: ''; position: absolute; right: -60px; top: -60px;
+      width: 280px; height: 280px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(58,176,127,.15), transparent 70%);
+      pointer-events: none;
+    }
+    .problem__bridge p { flex: 1; min-width: 240px; font-family: 'Montserrat', sans-serif; font-size: 1.25rem; font-weight: 700; color: rgba(255,255,255,.85); line-height: 1.45; position: relative; }
+    .problem__bridge p span { color: var(--green-l); }
+    @media (max-width: 768px) { .problem__bridge { padding: 32px 28px; } }
+
+    /* ─── PROGRAM ─── */
+    .program { padding: 100px 0; background: rgba(255,255,255,0.04); border-top: 1px solid var(--border); }
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px; margin-top: 56px;
+    }
+    .modules-grid .mod-card:nth-child(odd) {
+      background: #20224d;
+      border-color: rgba(255,255,255,0.1);
+    }
+    .modules-grid .mod-card:nth-child(even) {
+      background: #3ab07f;
+      border-color: rgba(255,255,255,0.2);
+    }
+    .modules-grid .mod-card:nth-child(even) .mod-card__title { color: #fff; }
+    .modules-grid .mod-card:nth-child(even) .mod-card__desc { color: rgba(255,255,255,0.85); }
+    .modules-grid .mod-card:nth-child(even) .step-badge {
+      background: rgba(0,0,0,0.15); border-color: rgba(255,255,255,0.2); color: #fff;
+    }
+    @media (max-width: 860px) {
+      .modules-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .modules-grid { grid-template-columns: 1fr; }
+    }
+    .mod-card {
+      background: rgba(81,235,172,0.04); border: 1px solid var(--border);
+      border-radius: 20px; padding: 32px 28px;
+      position: relative; overflow: visible;
+      transition: border-color .3s, box-shadow .3s, transform .35s cubic-bezier(.34,1.56,.64,1), z-index 0s;
+      z-index: 1;
+    }
+    .mod-card::after {
+      content: ''; position: absolute; inset: 0;
+      border-radius: 20px; border: 1px solid var(--border); pointer-events: none;
+    }
+    .mod-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 2px; border-radius: 20px 20px 0 0;
+      background: var(--grad); opacity: 0.5; transition: opacity .3s; z-index: 2;
+    }
+    .mod-card:hover {
+      border-color: rgba(81,235,172,.55);
+      box-shadow: 0 24px 60px rgba(58,176,127,.2);
+      transform: scale(1.06) translateY(-8px);
+      z-index: 10;
+    }
+    .mod-card:hover::before { opacity: 1; }
+    .mod-card--featured { background: rgba(58,176,127,.08); border-color: rgba(81,235,172,0.5); box-shadow: 0 0 32px rgba(58,176,127,.12); }
+    .mod-card--featured::before { opacity: 1; }
+    .step-badge {
+      display: inline-block; font-family: 'Montserrat', sans-serif;
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--green); background: var(--green-bg);
+      border: 1px solid var(--green-border); padding: 3px 10px; border-radius: 6px;
+      margin-bottom: 16px;
+    }
+    .mod-card__title { font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
+    .mod-card__desc { font-size: .9rem; color: var(--muted); line-height: 1.65; }
+
+    /* ─── BONUS ─── */
+    .bonus { padding: 80px 0; background: transparent; border-top: 1px solid var(--border); }
+    .bonus__card {
+      display: flex; align-items: center; gap: 40px;
+      background: rgba(58,176,127,0.07); border: 1px solid var(--green-border);
+      border-radius: 24px; padding: 48px 52px; flex-wrap: wrap;
+      position: relative; overflow: hidden;
+    }
+    .bonus__card::before {
+      content: ''; position: absolute; left: -60px; bottom: -60px;
+      width: 260px; height: 260px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(58,176,127,.08), transparent 70%);
+    }
+    .bonus__emoji-wrap {
+      width: 88px; height: 88px; border-radius: 22px; flex-shrink: 0;
+      background: var(--green-bg); border: 1px solid var(--green-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.4rem;
+    }
+    .bonus__mockup {
+      width: 340px; flex-shrink: 0;
+      border-radius: 16px; display: block;
+      filter: drop-shadow(0 16px 40px rgba(0,0,0,.4));
+    }
+    @media (max-width: 860px) { .bonus__mockup { width: 100%; max-width: 360px; margin: 0 auto; } }
+    .bonus__content { flex: 1; min-width: 220px; }
+    .bonus__label { font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--green); margin-bottom: 10px; display: block; }
+    .bonus__title { font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-weight: 800; color: #fff; margin-bottom: 10px; }
+    .bonus__text { font-size: .95rem; color: var(--muted); line-height: 1.65; }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials { padding: 100px 0; background: var(--bg2); border-top: 1px solid var(--border); }
+    .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 56px; }
+    @media (max-width: 600px) { .stats-row { grid-template-columns: 1fr; } }
+    .stat-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 20px; padding: 32px 24px; text-align: center;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .stat-card:hover { box-shadow: 0 8px 32px rgba(32,34,77,.1); transform: translateY(-3px); }
+    .stat-card__num {
+      font-family: 'Montserrat', sans-serif; font-size: 2.6rem; font-weight: 900;
+      background: var(--grad); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+      line-height: 1; margin-bottom: 8px;
+    }
+    .stat-card__label { font-size: .88rem; color: var(--muted); }
+    .ss-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 48px; }
+    @media (max-width: 1000px) { .ss-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px)  { .ss-grid { grid-template-columns: 1fr; } }
+    .ss-card {
+      border-radius: 16px; padding: 20px 18px;
+      font-size: .84rem; line-height: 1.65;
+      transition: box-shadow .25s;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+    .ss-card--dark { background: #1a1c2e; color: rgba(255,255,255,.9); }
+    .ss-card--dark .ss-source { color: rgba(255,255,255,.35); }
+    .ss-card--light { background: #fff; border: 1px solid rgba(32,34,77,.12); color: #1a1c2e; }
+    .ss-card--light .ss-source { color: #6b7080; }
+    .ss-card--light .ss-name { color: #20224d !important; }
+    .ss-avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--grad); display: flex; align-items: center; justify-content: center;
+      font-size: .75rem; font-weight: 800; color: #fff; flex-shrink: 0;
+    }
+    .ss-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .ss-name { font-weight: 700; font-size: .82rem; }
+    .ss-card--dark .ss-name { color: #fff; }
+    .ss-source { font-size: .72rem; margin-top: 12px; display: flex; align-items: center; gap: 5px; }
+
+    /* ─── VIDEO SECTION ─── */
+    .video-section { padding: 100px 0; background: var(--navy); border-top: 1px solid var(--border); position: relative; overflow: hidden; }
+    .video-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(58,176,127,.2) 0%, transparent 70%); pointer-events: none; }
+    .video-player {
+      max-width: 860px; margin: 0 auto;
+      border-radius: 24px; overflow: hidden;
+      box-shadow: 0 40px 100px rgba(0,0,0,.55);
+      cursor: pointer;
+      transition: transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s;
+    }
+    .video-player:hover { transform: scale(1.02); box-shadow: 0 56px 120px rgba(0,0,0,.65); }
+    .video-thumb { position: relative; }
+    .video-thumb__img { width: 100%; display: block; }
+    .video-thumb__overlay {
+      position: absolute; inset: 0;
+      background: rgba(4,5,20,.45);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 16px;
+      transition: background .3s;
+    }
+    .video-player:hover .video-thumb__overlay { background: rgba(4,5,20,.25); }
+    .video-label {
+      font-family: 'Montserrat', sans-serif; font-size: .7rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(255,255,255,.8); background: rgba(255,255,255,.1);
+      backdrop-filter: blur(8px); padding: 6px 14px; border-radius: 100px;
+      border: 1px solid rgba(255,255,255,.15);
+    }
+    .play-btn {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--green);
+      display: flex; align-items: center; justify-content: center;
+      animation: pulsePlay 2s ease-in-out infinite;
+      transition: transform .2s, background .2s;
+    }
+    .video-player:hover .play-btn { transform: scale(1.12); background: #51ebac; }
+    .play-icon { width:0; height:0; border-style:solid; border-width:14px 0 14px 26px; border-color:transparent transparent transparent #fff; margin-left:5px; }
+    .video-player iframe { width:100%; aspect-ratio:16/9; border:none; display:block; }
+    .video-chips {
+      display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
+      margin-top: 36px;
+    }
+    .video-chip {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
+      color: rgba(255,255,255,.75);
+      font-family: 'Montserrat', sans-serif; font-size: .78rem; font-weight: 600;
+      padding: 10px 18px; border-radius: 100px;
+      transition: background .2s, border-color .2s, transform .2s;
+    }
+    .video-chip:hover { background: rgba(255,255,255,.14); border-color: rgba(58,176,127,.5); transform: translateY(-3px); }
+
+    /* ─── CTA MID ─── */
+    .cta-mid { padding: 80px 0; background: transparent; border-top: 1px solid var(--border); }
+    .cta-mid__box {
+      background: linear-gradient(135deg, #14174a 0%, #1d2168 100%);
+      border-radius: 28px; padding: 64px 56px;
+      display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center;
+      border: 1px solid rgba(81,235,172,.35); position: relative; overflow: hidden;
+    }
+    .cta-mid__box::before {
+      content: ''; position: absolute; right: -80px; top: -80px;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(58,176,127,.15), transparent 70%);
+    }
+    @media (max-width: 768px) { .cta-mid__box { grid-template-columns: 1fr; text-align: center; padding: 48px 32px; } }
+    .cta-mid__title { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 800; color: #fff; margin-bottom: 8px; }
+    .cta-mid__sub { font-size: .95rem; color: rgba(255,255,255,.45); }
+
+    /* ─── PRICING ─── */
+    .pricing { padding: 100px 0; background: rgba(255,255,255,0.02); border-top: 1px solid var(--border); }
+    .pricing__grid { display: grid; grid-template-columns: 1fr 2fr; gap: 24px; margin-top: 56px; max-width: 1160px; }
+    @media (max-width: 960px) { .pricing__grid { grid-template-columns: 1fr; max-width: 600px; } }
+    .plan--installment {
+      background: linear-gradient(145deg, #0d1235 0%, #141852 100%);
+      border-color: rgba(81,235,172,0.45);
+      box-shadow: 0 0 32px rgba(58,176,127,.15), inset 0 1px 0 rgba(81,235,172,.15);
+    }
+    .plan__badge--purple {
+      background: var(--green);
+    }
+    .plan__installment-price {
+      display: flex; align-items: baseline; gap: 6px; margin-bottom: 4px;
+    }
+    .plan__install-x {
+      font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 700;
+      color: rgba(255,255,255,.5);
+    }
+    .plan__install-total {
+      font-size: .82rem; color: rgba(255,255,255,.35); margin-bottom: 28px;
+    }
+    .plan__old-price {
+      font-family: 'Montserrat', sans-serif;
+      font-size: .95rem; font-weight: 600;
+      color: rgba(255,255,255,.3);
+      text-decoration: line-through;
+      margin-bottom: 2px;
+    }
+    .plans-group {
+      position: relative;
+      border: 1.5px solid rgba(81,235,172,0.4);
+      border-radius: 28px;
+      padding: 52px 20px 20px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      background: rgba(81,235,172,0.03);
+      box-shadow: 0 0 60px rgba(58,176,127,.08);
+    }
+    .plans-group__label {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      white-space: nowrap;
+      background: var(--green);
+      border-radius: 100px; padding: 5px 20px;
+      font-family: 'Montserrat', sans-serif; font-size: .68rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: #fff;
+    }
+    @media (max-width: 600px) {
+      .plans-group { grid-template-columns: 1fr; padding: 44px 16px 16px; }
+    }
+    .plan {
+      background: rgba(0,0,0,0.25); border: 1px solid var(--border);
+      border-radius: 24px; padding: 36px 32px; position: relative;
+    }
+    .plan--featured {
+      background: linear-gradient(145deg, #0d1235 0%, #141852 100%);
+      border-color: rgba(81,235,172,0.55);
+      box-shadow: 0 0 48px rgba(58,176,127,.25), inset 0 1px 0 rgba(81,235,172,.25);
+    }
+    .plan--starter {
+      background: linear-gradient(145deg, #0d1235 0%, #141852 100%);
+      border-color: rgba(81,235,172,0.45);
+      box-shadow: 0 0 40px rgba(58,176,127,.18), inset 0 1px 0 rgba(81,235,172,.18);
+    }
+    .plan__badge {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--green); color: #fff;
+      font-family: 'Montserrat', sans-serif; font-size: .7rem; font-weight: 700;
+      padding: 4px 18px; border-radius: 100px;
+      letter-spacing: .06em; text-transform: uppercase; white-space: nowrap;
+    }
+    .plan__name {
+      font-family: 'Montserrat', sans-serif; font-size: .75rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+    }
+    .plan--featured .plan__name { color: rgba(255,255,255,.4); }
+    .plan__amount {
+      font-family: 'Montserrat', sans-serif; font-size: 3rem; font-weight: 900;
+      color: #fff; line-height: 1; margin-bottom: 4px;
+    }
+    .plan__value { font-size: .85rem; color: var(--muted); margin-bottom: 28px; }
+    .plan--featured .plan__value { color: rgba(255,255,255,.35); }
+    .plan__features { list-style: none; margin-bottom: 28px; }
+    .plan__features li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 0; font-size: .9rem;
+      border-bottom: 1px solid var(--border); color: var(--muted);
+    }
+    .plan--featured .plan__features li { border-bottom-color: rgba(255,255,255,.07); color: rgba(255,255,255,.6); }
+    .plan__features li:last-child { border-bottom: none; }
+    .plan__check { color: var(--green); font-weight: 700; flex-shrink: 0; }
+    .plan__cta {
+      display: block; text-align: center;
+      background: var(--green); color: #fff;
+      font-family: 'Montserrat', sans-serif; font-size: .88rem; font-weight: 700;
+      padding: 16px 24px; border-radius: 100px;
+      transition: opacity .2s, transform .2s; margin-bottom: 14px;
+    }
+    .plan__cta:hover { opacity: .9; transform: translateY(-1px); }
+    .plan__guarantee { font-size: .78rem; color: var(--muted); text-align: center; }
+
+    /* ─── PLAN BONUS BOX ─── */
+    .plan__bonus-box {
+      background: linear-gradient(135deg, rgba(58,176,127,0.18) 0%, rgba(81,235,172,0.08) 100%);
+      border: 1px solid rgba(81,235,172,0.45);
+      border-radius: 14px; padding: 16px 18px;
+      margin: 0 0 20px;
+    }
+    .plan__bonus-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: .65rem; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--green-l); margin-bottom: 6px;
+    }
+    .plan__bonus-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.15rem; font-weight: 900;
+      color: #fff; margin-bottom: 4px;
+    }
+    .plan__bonus-val {
+      font-size: .8rem; color: rgba(255,255,255,.45);
+    }
+    .plan__bonus-val strong { color: var(--green-l); font-weight: 700; }
+
+    /* ─── BONUS ACCORDION ─── */
+    .plan__bonus-toggle {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      border: none; border-radius: 0; background: transparent; padding: 0; margin: 0;
+      width: 100%; text-align: left;
+      border-top: 1px solid rgba(81,235,172,.2); margin-top: 12px; padding-top: 10px;
+      font-family: 'Montserrat', sans-serif; font-size: .72rem; font-weight: 700; color: var(--green-l);
+      cursor: pointer; user-select: none;
+      transition: color .2s;
+    }
+    .plan__bonus-toggle:hover { color: #fff; }
+    .plan__bonus-arrow {
+      font-size: .58rem; flex-shrink: 0;
+      transition: transform .3s cubic-bezier(.4,0,.2,1);
+    }
+    .plan__bonus-toggle.open .plan__bonus-arrow { transform: rotate(180deg); }
+    .plan__bonus-body {
+      overflow: hidden; max-height: 0;
+      transition: max-height .38s ease;
+    }
+    .plan__bonus-body.open { max-height: 260px; }
+    .plan__bonus-body ul {
+      list-style: none; padding: 10px 0 2px; margin: 8px 0 0;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+    .plan__bonus-body li {
+      display: flex; align-items: flex-start; gap: 8px;
+      padding: 4px 0; font-size: .72rem; color: rgba(255,255,255,.65); line-height: 1.5;
+    }
+    .plan__bonus-body li .bc { color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+    /* ─── FAQ ─── */
+    .faq { padding: 100px 0; background: transparent; border-top: 1px solid var(--border); }
+    .faq-list { max-width: 720px; margin: 56px auto 0; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      border-radius: 12px; margin-bottom: 8px;
+      background: rgba(81,235,172,0.03);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .faq-item.open { border-color: rgba(81,235,172,0.45); background: rgba(81,235,172,0.06); }
+    .faq-q {
+      width: 100%; background: none; border: none; color: #fff;
+      font-family: 'Source Sans 3', sans-serif; font-size: .98rem; font-weight: 600;
+      padding: 20px 24px; display: flex; align-items: center; justify-content: space-between;
+      cursor: pointer; text-align: left; gap: 16px; transition: color .2s;
+    }
+    .faq-q:hover { color: var(--green-l); }
+    .faq-q__icon {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(81,235,172,.1); border: 1px solid rgba(81,235,172,.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; color: var(--green-l);
+      transition: transform .35s cubic-bezier(.34,1.56,.64,1), background .2s;
+    }
+    .faq-item.open .faq-q__icon { transform: rotate(45deg); background: var(--green); color: #fff; border-color: var(--green); }
+    .faq-a {
+      font-size: .93rem; color: var(--muted); line-height: 1.75;
+      max-height: 0; overflow: hidden; transition: max-height .4s ease, padding .4s;
+    }
+    .faq-item.open .faq-a { max-height: 400px; padding: 0 24px 22px; }
+
+    /* ─── FINAL CTA ─── */
+    .final-cta { padding: 80px 0 100px; background: rgba(255,255,255,0.02); border-top: 1px solid var(--border); }
+    .final-cta__box {
+      background: linear-gradient(145deg, #14174a 0%, #1d2168 100%);
+      border-radius: 32px; padding: 80px 56px;
+      text-align: center; position: relative; overflow: hidden;
+      border: 1px solid rgba(81,235,172,.4);
+      box-shadow: 0 32px 80px rgba(0,0,0,.6), 0 0 60px rgba(58,176,127,.1);
+    }
+    .final-cta__box::before {
+      content: ''; position: absolute; bottom: -100px; right: -100px;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(58,176,127,.15), transparent 70%);
+    }
+    .final-cta__box::after {
+      content: ''; position: absolute; top: -80px; left: -80px;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(81,235,172,.06), transparent 70%);
+    }
+    .final-cta__title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; color: #fff; margin-bottom: 14px; position: relative; z-index: 1; }
+    .final-cta__sub { font-size: 1.05rem; color: rgba(255,255,255,.5); margin-bottom: 40px; position: relative; z-index: 1; }
+    .countdown-wrap { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 40px; position: relative; z-index: 1; }
+    .cd-unit {
+      background: rgba(0,0,0,.3); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 14px; padding: 14px 18px; min-width: 72px; text-align: center;
+    }
+    .cd-num {
+      font-family: 'Montserrat', sans-serif; font-size: 1.8rem; font-weight: 900;
+      background: var(--grad); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+      line-height: 1; display: block;
+    }
+    .cd-label { font-size: .62rem; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.3); margin-top: 4px; display: block; }
+    .cd-sep { font-family: 'Montserrat', sans-serif; font-size: 1.6rem; font-weight: 900; color: rgba(255,255,255,.2); }
+    .final-cta__btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+    .final-cta__meta { margin-top: 20px; font-size: .8rem; color: rgba(255,255,255,.3); position: relative; z-index: 1; }
+    .final-cta__meta span { color: var(--green); }
+    @media (max-width: 480px) { .final-cta__box { padding: 52px 24px; } }
+
+    /* ─── MODAL PRIVACY ─── */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,.75);
+      backdrop-filter: blur(8px); z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px; opacity: 0; pointer-events: none; transition: opacity .3s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal-box {
+      background: #0d0e2a; border: 1px solid var(--border);
+      border-radius: 20px; width: 100%; max-width: 740px; max-height: 85vh;
+      display: flex; flex-direction: column;
+      box-shadow: 0 32px 80px rgba(0,0,0,.6);
+      transform: translateY(20px) scale(.97);
+      transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+    }
+    .modal-overlay.open .modal-box { transform: none; }
+    .modal-head {
+      padding: 24px 28px 18px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+    }
+    .modal-head h2 { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 800; color: #fff; }
+    .modal-close {
+      width: 32px; height: 32px; border-radius: 50%; border: none;
+      background: rgba(255,255,255,.08); cursor: pointer; font-size: 1.1rem; color: rgba(255,255,255,.6);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .modal-close:hover { background: rgba(255,255,255,.15); color: #fff; }
+    .modal-body { padding: 24px 28px; overflow-y: auto; font-size: .88rem; color: var(--muted); line-height: 1.75; }
+    .modal-body h3 { font-family: 'Montserrat', sans-serif; font-size: .9rem; font-weight: 700; color: rgba(255,255,255,.8); margin: 20px 0 8px; }
+    .modal-body p { margin-bottom: 10px; }
+
+    /* ─── FOOTER ─── */
+    footer { background: rgba(0,0,0,.3); padding: 48px 0; border-top: 1px solid var(--border); }
+    .footer__inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    .footer__logo img { height: 40px; width: auto; display: block; filter: brightness(0) invert(1); opacity: .5; }
+    .footer__links { display: flex; gap: 24px; font-size: .82rem; color: rgba(255,255,255,.25); }
+    .footer__links a:hover { color: rgba(255,255,255,.5); }
+    .footer__copy { width: 100%; text-align: center; font-size: .75rem; color: rgba(255,255,255,.2); margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); }
+    @media (max-width: 768px) { .footer__inner { flex-direction: column; align-items: center; text-align: center; } .footer__links { justify-content: center; } }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-stagger > * { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal-stagger.visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0s; }
+    .reveal-stagger.visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: .1s; }
+    .reveal-stagger.visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: .2s; }
+    .reveal-stagger.visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: .3s; }
+    .reveal-stagger.visible > *:nth-child(5) { opacity: 1; transform: none; transition-delay: .4s; }
+    .reveal-stagger.visible > *:nth-child(6) { opacity: 1; transform: none; transition-delay: .5s; }
+    .reveal-stagger.visible > *:nth-child(7) { opacity: 1; transform: none; transition-delay: .6s; }
+    .reveal-stagger.visible > *:nth-child(8) { opacity: 1; transform: none; transition-delay: .7s; }
+
+    /* ─── CURSOR GLOW ─── */
+    .cursor-glow {
+      pointer-events: none; position: fixed; z-index: 0;
+      width: 480px; height: 480px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(58,176,127,.11) 0%, transparent 68%);
+      transform: translate(-50%, -50%);
+      will-change: left, top;
+      transition: opacity .3s;
+    }
+    @media (hover: none) { .cursor-glow { display: none; } }
+
+    /* ─── MOD-CARD EMOJI ─── */
+    .mod-card__emoji {
+      font-size: 2.2rem; display: block; margin-bottom: 14px;
+      transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+      line-height: 1;
+    }
+    .mod-card:hover .mod-card__emoji { transform: scale(1.25) rotate(-8deg); }
+    .mod-card { transform-style: preserve-3d; }
+
+    /* ─── MOBILE: sp-stack jako swipe gallery ─── */
+    .sp-mobile-gallery,
+    .sp-content-mobile { display: none; }
+
+    @media (max-width: 860px) {
+      .sp-mobile-gallery {
+        display: flex; overflow-x: auto; gap: 16px;
+        padding: 32px 28px 40px; scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .sp-mobile-gallery::-webkit-scrollbar { display: none; }
+      .sp-mobile-card {
+        flex: 0 0 72vw; max-width: 280px; scroll-snap-align: center;
+        border-radius: 20px; overflow: hidden; position: relative;
+        box-shadow: 0 16px 48px rgba(0,0,0,.5);
+      }
+      .sp-mobile-card img { width: 100%; height: 380px; object-fit: cover; object-position: top; display: block; }
+      .sp-mobile-badge {
+        position: absolute; bottom: 16px; left: 12px; right: 12px;
+        background: rgba(10,12,30,.8); backdrop-filter: blur(12px);
+        border: 1px solid rgba(81,235,172,.2); border-radius: 12px;
+        padding: 10px 14px; display: flex; align-items: center; gap: 8px;
+      }
+      .sp-mobile-badge__icon { font-size: 1.1rem; flex-shrink: 0; }
+      .sp-mobile-badge__text { font-family: 'Montserrat', sans-serif; font-size: .72rem; font-weight: 700; color: #fff; line-height: 1.3; }
+      .sp-mobile-badge__sub { font-size: .65rem; color: rgba(255,255,255,.45); }
+      .sp-content-mobile { padding: 0 28px 80px; }
+      .sp-item-mobile { padding: 32px 0; border-bottom: 1px solid var(--border); }
+      .sp-item-mobile:last-child { border-bottom: none; }
+      .sp-item-mobile .sp-item__num { margin-bottom: 12px; }
+      .sp-item-mobile .sp-item__title { font-size: 1.5rem; margin-bottom: 12px; }
+      .sp-item-mobile .sp-item__text { font-size: .95rem; margin-bottom: 16px; }
+    }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 768px) {
+      /* Section label: keep pill shape (fit-content + auto margin) */
+      .section-label { display: block; width: fit-content; margin-left: auto; margin-right: auto; margin-bottom: 14px; text-align: center; }
+      .section-title { text-align: center; }
+      .section-sub { text-align: center; margin: 0 auto; }
+      .instructor__heading { text-align: center; }
+      .sticky-item { text-align: center; }
+      .sticky-item__desc { margin: 0 auto; }
+      .footer__inner { flex-direction: column; align-items: center; }
+
+      /* Bonus: stack vertically and center */
+      .bonus__card { flex-direction: column; align-items: center; text-align: center; padding: 40px 24px; gap: 24px; }
+      .bonus__content { text-align: center; }
+
+      /* Problem bridge: center CTA button */
+      .problem__bridge { text-align: center; }
+      .problem__bridge .btn { margin: 0 auto; }
+
+      /* Section vertical padding: less on mobile */
+      .problem, .program, .bonus, .testimonials,
+      .pricing, .faq, .final-cta { padding-top: 60px; padding-bottom: 60px; }
+      .video-section { padding: 60px 0; }
+
+      /* Final CTA box: reduce padding */
+      .final-cta__box { padding: 48px 24px; }
+    }
+
+    /* ─── PRICING MOBILE FIXES ─── */
+    @media (max-width: 600px) {
+      /* Allow label to wrap instead of overflowing */
+      .plans-group__label {
+        white-space: normal;
+        max-width: calc(100% - 40px);
+        text-align: center;
+        line-height: 1.4;
+        padding: 6px 16px;
+      }
+      /* Reduce plan card inner padding */
+      .plan { padding: 28px 18px; }
+      /* Allow badge and CTA to wrap */
+      .plan__badge { white-space: normal; text-align: center; line-height: 1.3; }
+      .plan__cta { white-space: normal; line-height: 1.3; }
+    }
+
+    /* ─── VERY SMALL PHONES (≤400px) ─── */
+    @media (max-width: 400px) {
+      .container { padding: 0 16px; }
+      .plan { padding: 22px 14px; }
+      .plan__amount { font-size: 2.4rem; }
+      .plans-group { padding: 48px 12px 12px; }
+      /* Countdown digits tighter */
+      .countdown-wrap { gap: 6px; }
+      .cd-unit { padding: 10px 8px; min-width: 52px; }
+      .cd-num { font-size: 1.4rem; }
+      .cd-sep { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- ═══ TOP BAR ═══ -->
+<div class="top-bar">
+  <span class="top-bar__label">🔥 Kończy się za:</span>
+  <div class="top-bar__cd">
+    <div class="top-bar__cd-unit"><span id="tb-d">07</span><em>d</em></div>
+    <span class="top-bar__sep">:</span>
+    <div class="top-bar__cd-unit"><span id="tb-h">00</span><em>h</em></div>
+    <span class="top-bar__sep">:</span>
+    <div class="top-bar__cd-unit"><span id="tb-m">00</span><em>m</em></div>
+  </div>
+  <a href="#cennik" class="top-bar__cta">Kup kurs →</a>
+</div>
+
+<!-- ═══ NAV ═══ -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav__inner">
+      <div class="nav__logo">
+        <img src="ANO_podstawowa_zielony_1_pion.png" alt="Akademia Nauczyciela Online">
+      </div>
+      <div class="nav__links">
+        <a href="#program">Program</a>
+        <a href="#opinie">Opinie</a>
+        <a href="#cennik">Cennik</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <a href="#cennik" class="nav__cta">Kup kurs →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="container" style="display:contents">
+    <div class="hero__left" style="padding: 0 0 0 max(28px, calc((100vw - 1160px)/2 + 28px)); position:relative; z-index:1">
+
+      <div class="hero__badge hi-1">
+        <span class="hero__badge-dot"></span>
+        Kurs online · 2026
+      </div>
+
+      <h1 class="hero__course-name hi-2">Lekcja na<br><span>Autopilocie</span></h1>
+
+      <p class="hero__title hi-3">
+        Opanuj 6 platform quiz-AI w 120 minut i generuj angażujące aktywności na każdą lekcję.
+      </p>
+
+      <p class="hero__sub hi-4">
+        Bez wymyślania i ręcznego pisania pytań. Wdrażasz od razu po obejrzeniu szkolenia.
+      </p>
+
+      <div class="hero__cta-row hi-5">
+        <a href="https://cart.easy.tools/checkout/54778299/lekcja-na-autopilocie-gry-i-aplikacje-z-ai-pod-twoj-przedmiot?plan=price_1Tdmw4IE1hBd4UtqLmPVjnSN" class="btn btn--green" target="_blank" rel="noopener">Kupuję Szybki Start — 127 zł →</a>
+        <a href="#program" class="btn btn--ghost">Zobacz program</a>
+      </div>
+
+      <div class="hero__proof">
+        <div class="hero__proof-avatars">
+          <div class="hero__proof-avatar">AK</div>
+          <div class="hero__proof-avatar">MN</div>
+          <div class="hero__proof-avatar">PW</div>
+          <div class="hero__proof-avatar">BJ</div>
+        </div>
+        <div class="hero__proof-text">
+          <div class="stars">★★★★★</div>
+          <strong>12 000+</strong> nauczycieli z nami
+        </div>
+      </div>
+
+    </div>
+
+    <div class="hero__right" style="padding: 0 max(28px, calc((100vw - 1160px)/2 + 28px)) 0 0; position:relative; z-index:1; display:flex; align-items:center; justify-content:center;">
+
+      <div class="hi-6" style="width:100%">
+        <div class="hero__mockup-frame">
+          <img src="mockup2.png" alt="Lekcja na Autopilocie — mockup kursu" class="hero__mockup-img">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PLATFORMS BAR + VIDEO ═══ -->
+<div class="platforms-bar">
+  <div class="container">
+    <p class="platforms-bar__label">6 platform, które poznasz w kursie</p>
+    <div class="platforms-bar__row">
+      <div class="platform-chip"><span class="platform-chip__dot"></span>Blooket</div>
+      <div class="platform-chip"><span class="platform-chip__dot"></span>Gimkit</div>
+      <div class="platform-chip"><span class="platform-chip__dot"></span>Quizwhizzer</div>
+      <div class="platform-chip"><span class="platform-chip__dot"></span>Baamboozle</div>
+      <div class="platform-chip"><span class="platform-chip__dot"></span>Wayground</div>
+      <div class="platform-chip"><span class="platform-chip__dot"></span>Quizlet</div>
+    </div>
+
+    <div class="video-player reveal" id="heroVideo" style="margin-top:48px; display:none">
+      <div class="video-thumb">
+        <img src="mockup3.png" alt="Lekcja na Autopilocie" class="video-thumb__img">
+        <div class="video-thumb__overlay">
+          <div class="video-label">Szkolenie online · 92 min</div>
+          <div class="play-btn"><div class="play-icon"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PROBLEM ═══ -->
+<section class="problem" id="problem">
+  <div class="container">
+    <div class="problem__grid">
+
+      <div class="problem__left reveal">
+        <span class="section-label">Dla kogo?</span>
+        <h2 class="section-title">Czy to brzmi<br>znajomo?</h2>
+        <p class="section-sub">To szkolenie jest skierowane do nauczycieli, którzy chcą efektywnie wykorzystać nowoczesne narzędzia w pracy dydaktycznej i odzyskać czas na to, co naprawdę ważne.</p>
+      </div>
+
+      <div class="problem__pains">
+        <div class="pain-item reveal">
+          <div class="pain-item__icon">📋</div>
+          <div class="pain-item__body">
+            <div class="pain-item__title">Przygotowanie materiałów pochłania godziny</div>
+            <div class="pain-item__text">Budowanie quizów pytanie po pytaniu to czas, który można przeznaczyć na inne zadania zawodowe lub odpoczynek po wymagającym dniu.</div>
+          </div>
+        </div>
+        <div class="pain-item reveal">
+          <div class="pain-item__icon">📉</div>
+          <div class="pain-item__body">
+            <div class="pain-item__title">Spadek zaangażowania uczniów w końcówce roku</div>
+            <div class="pain-item__text">Utrzymanie koncentracji klasy w ostatnich tygodniach roku szkolnego staje się coraz trudniejsze. Tradycyjne metody aktywizacji przestają być wystarczające.</div>
+          </div>
+        </div>
+        <div class="pain-item reveal">
+          <div class="pain-item__icon">🔍</div>
+          <div class="pain-item__body">
+            <div class="pain-item__title">Niepewność wobec rzetelności narzędzi AI</div>
+            <div class="pain-item__text">Obawy przed błędami merytorycznymi powstrzymują przed wdrożeniem AI — choć wystarczy poznać skuteczne metody weryfikacji treści.</div>
+          </div>
+        </div>
+        <div class="pain-item reveal">
+          <div class="pain-item__icon">🗂️</div>
+          <div class="pain-item__body">
+            <div class="pain-item__title">Wiele narzędzi, brak czasu na ich poznanie</div>
+            <div class="pain-item__text">Blooket, Gimkit, Quizwhizzer — platformy, o których słyszałaś, ale brak czasu na samodzielne ich poznanie sprawia, że pozostają niewykorzystane.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="problem__bridge reveal">
+        <p>To szkolenie to <span>gotowy system pracy</span> — zaczniesz tworzyć angażujące aktywności w kilka minut, nie godzin.</p>
+        <a href="#cennik" class="btn btn--green">Chcę to zmienić →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROGRAM ═══ -->
+<section class="program" id="program">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <span class="section-label">Program kursu</span>
+      <h2 class="section-title">6 platform, które zmienią<br>Twoje lekcje</h2>
+      <p class="section-sub" style="margin: 0 auto 0">Krok po kroku. Każde wideo to gotowy przepis — wdrażasz od razu, bez eksperymentowania.</p>
+    </div>
+
+    <div class="modules-grid reveal-stagger">
+
+      <div class="mod-card">
+        <span class="step-badge">Etap 1</span>
+        <span class="mod-card__emoji">🎮</span>
+        <h3 class="mod-card__title">Blooket</h3>
+        <p class="mod-card__desc">Koniec z nudnym A/B/C. Wdróż tryby Crypto Hack i Tower Defense — zbuduj imersyjną bazę pytań bezpośrednio w 60 sekund.</p>
+      </div>
+
+      <div class="mod-card">
+        <span class="step-badge">Etap 2</span>
+        <span class="mod-card__emoji">⚡</span>
+        <h3 class="mod-card__title">Gimkit</h3>
+        <p class="mod-card__desc">Nauczysz się obsługi narzędzia, które wykorzystuje mechanizmy znane z popularnych gier komputerowych. Dowiesz się, jak utrzymać zaangażowanie uczniów do samego końca zajęć dzięki elementom zdrowej rywalizacji i współpracy.</p>
+      </div>
+
+      <div class="mod-card">
+        <span class="step-badge">Etap 3</span>
+        <span class="mod-card__emoji">🧩</span>
+        <h3 class="mod-card__title">Quizwhizzer</h3>
+        <p class="mod-card__desc">Stwórz interaktywną mapę. Uczniowie wybierają trasę (kraj, kontynent, labirynt z Canvy) i grają na tablicy.</p>
+      </div>
+
+      <div class="mod-card">
+        <span class="step-badge">Etap 4</span>
+        <span class="mod-card__emoji">💥</span>
+        <h3 class="mod-card__title">Baamboozle</h3>
+        <p class="mod-card__desc">Drużyny grają telefonami w ławce. Potrzebujesz tylko rzutnika — reszta dzieje się sama. Losowe pytania, niepowtarzalny klimat.</p>
+      </div>
+
+      <div class="mod-card">
+        <span class="step-badge">Etap 5</span>
+        <span class="mod-card__emoji">🤖</span>
+        <h3 class="mod-card__title">Wayground</h3>
+        <p class="mod-card__desc">Zaskocz i złam rutyny. Dostosuj każdą aktywność do specyfiki swojej grupy — więcej możliwości niż inne platformy.</p>
+      </div>
+
+      <div class="mod-card">
+        <span class="step-badge">Etap 6</span>
+        <span class="mod-card__emoji">📇</span>
+        <h3 class="mod-card__title">Quizlet</h3>
+        <p class="mod-card__desc">Opanuj platformę, która błyskawicznie automatyzuje naukę pojęć i słownictwa. Dowiesz się, jak jednym kliknięciem zaimportować bazę z AI, stworzyć cyfrowe fiszki i odpalić drużynowy turniej Quizlet Live na lekcji.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ BONUS ═══ -->
+<section class="bonus">
+  <div class="container">
+    <div class="bonus__card reveal">
+      <img src="mockupgry2.png" alt="E-book 30 darmowych gier i aktywności" class="bonus__mockup">
+      <div class="bonus__content">
+        <span class="bonus__label">Bonus dostępny od razu</span>
+        <h3 class="bonus__title">E-book: „30 darmowych gier i aktywności dla każdej klasy"</h3>
+        <p class="bonus__text">Katalog gotowych, darmowych inspiracji z całego świata — posortowany według przedmiotów. Otwierasz i wdrażasz od razu, bez godzin samodzielnego szukania.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INSTRUCTOR ═══ -->
+<section class="instructor">
+  <div class="sp-inner">
+
+    <div class="sp-sticky">
+      <div class="sp-stack">
+        <div class="sp-slide active">
+          <img src="klaudianew.png" alt="Klaudia Rogalska-Kalota">
+<div class="sp-badge">
+            <div class="sp-badge__icon">🎓</div>
+            <div class="sp-badge__text">Klaudia Rogalska-Kalota<br><span class="sp-badge__sub">Twórczyni Akademii Nauczyciela Online</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sp-content">
+      <h2 class="instructor__heading reveal" style="margin-bottom:48px">Kto będzie Cię uczył?</h2>
+
+      <div class="sp-item">
+        <div class="sp-item__num">O mnie · 01</div>
+        <h3 class="sp-item__title">Certyfikowany<br>Edukator Google<br>II stopnia</h3>
+        <p class="sp-item__text">Twórczyni kursów online i założycielka Akademii Nauczyciela Online. Trenerka nauczycieli w ogólnopolskich projektach Lekcja Enter i Edukacja Włączająca. Od lat pokazuję, że technologia może być sprzymierzeńcem — nie wrogiem.</p>
+        <div class="sp-item__stat"><strong>3+</strong> lata szkoleń online</div>
+      </div>
+
+      <div class="sp-item">
+        <div class="sp-item__num">O mnie · 02</div>
+        <h3 class="sp-item__title">12 000+<br>przeszkolonych<br>nauczycieli</h3>
+        <p class="sp-item__text">Z kursów Akademii skorzystało blisko 12 000 nauczycieli z całej Polski. Kursy o AI i nowych technologiach niezmiennie od ponad 3 lat przyciągają nowych uczestników — bo są konkretne i wdrażalne od razu.</p>
+        <div class="sp-item__stat"><strong>97%</strong> uczestników poleca</div>
+      </div>
+
+      <div class="sp-item">
+        <div class="sp-item__num">O mnie · 03</div>
+        <h3 class="sp-item__title">130 tys.<br>obserwujących<br>na Instagramie</h3>
+        <p class="sp-item__text">130-tysięczna społeczność nauczycieli zainteresowanych nowoczesnymi technologiami. Autorka tekstów w „Kreatywnym Wychowawcy". Każdy post to gotowy przepis — bez akademickiego żargonu, od razu do zastosowania w klasie.</p>
+        <div class="sp-item__stat"><strong>130k</strong> w społeczności</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MOBILE -->
+  <div class="sp-mobile-gallery">
+    <div class="sp-mobile-card">
+      <img src="klaudianew.png" alt="Klaudia Rogalska-Kalota">
+      <div class="sp-mobile-badge"><div class="sp-mobile-badge__icon">🎓</div><div class="sp-mobile-badge__text">Klaudia Rogalska-Kalota<br><span class="sp-mobile-badge__sub">Akademia Nauczyciela Online</span></div></div>
+    </div>
+  </div>
+  <div class="sp-content-mobile">
+    <div class="sp-item-mobile">
+      <div class="sp-item__num">Akademia Nauczyciela Online</div>
+      <h3 class="sp-item__title">Certyfikowany Edukator Google II stopnia</h3>
+      <p class="sp-item__text">Trenerka nauczycieli w ogólnopolskich projektach, twórczyni kursów online dla ponad 12 000 uczestników.</p>
+      <div class="sp-item__stat"><strong>12 000+</strong> przeszkolonych · <strong>130k</strong> Instagram</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="testimonials" id="opinie">
+  <div class="container">
+    <div class="reveal" style="text-align:center; margin-bottom: 0">
+      <span class="section-label">Opinie nauczycieli</span>
+      <h2 class="section-title">12 000+ nauczycieli już z nami</h2>
+    </div>
+
+    <div class="stats-row reveal-stagger" style="margin-top:48px">
+      <div class="stat-card">
+        <div class="stat-card__num">12 000+</div>
+        <div class="stat-card__label">nauczycieli przeszkolonych</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__num">120 min</div>
+        <div class="stat-card__label">pełny kurs, konkretna wiedza</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__num">6</div>
+        <div class="stat-card__label">platform, gotowych do użycia</div>
+      </div>
+    </div>
+
+    <div class="ss-grid reveal-stagger">
+
+      <div class="ss-card ss-card--dark">
+        <div class="ss-header">
+          <div class="ss-avatar">A</div>
+          <div class="ss-name">nauczycielka historii</div>
+        </div>
+        Blooket Tower Defense to hit moich lekcji. Uczniowie sami proszą o więcej — w 10 minut zrobiłam quiz z całego semestru 🎮
+        <div class="ss-source">📸 Instagram</div>
+      </div>
+
+      <div class="ss-card ss-card--dark">
+        <div class="ss-header">
+          <div class="ss-avatar">M</div>
+          <div class="ss-name">nauczycielka matematyki</div>
+        </div>
+        Gimkit zmienił moją klasę nie do poznania. Uczniowie liczą punkty, dyskutują o strategii — angażują się bardziej niż kiedykolwiek 💡
+        <div class="ss-source">📸 Instagram</div>
+      </div>
+
+      <div class="ss-card ss-card--dark">
+        <div class="ss-header">
+          <div class="ss-avatar">K</div>
+          <div class="ss-name">uczestniczka szkolenia</div>
+        </div>
+        Polecam szkolenie AI w edukacji u Klaudii – mnóstwo inspiracji i pomysłów do wykorzystania od zaraz. W tym temacie – tylko @trenernauczycielionline! ❤️
+        <div class="ss-source">📸 Instagram</div>
+      </div>
+
+      <div class="ss-card ss-card--dark">
+        <div class="ss-header">
+          <div class="ss-avatar">B</div>
+          <div class="ss-name">uczestniczka</div>
+        </div>
+        Pierwszy raz spotykam się z czymś takim, żeby po szkoleniu odbyło się spotkanie z możliwością zadawania pytań – rewelacja! 😍 Będę wypatrywać kolejnych!
+        <div class="ss-source">📸 Instagram</div>
+      </div>
+
+      <div class="ss-card ss-card--light">
+        <div class="ss-header">
+          <div class="ss-avatar" style="background:var(--green)">K</div>
+          <div class="ss-name">Karolina P. — nauczycielka biologii</div>
+        </div>
+        Kurs jest krótki i konkretny — przeszłam przez wszystko w jeden wieczór. We wrześniu wdrażam od razu. Dziękuję Klaudii! 🙌
+        <div class="ss-source">💬 Facebook</div>
+      </div>
+
+      <div class="ss-card ss-card--light">
+        <div class="ss-header">
+          <div class="ss-avatar" style="background:var(--green)">J</div>
+          <div class="ss-name">nauczycielka</div>
+        </div>
+        A szkolenie pierwsza klasa! Bardzo dużo ciekawych rzeczy się dowiedziałam 😊 Pomoże mi bardzo zautomatyzować wiele działań. Z niecierpliwością czekam na kolejne!
+        <div class="ss-source">💬 Facebook</div>
+      </div>
+
+      <div class="ss-card ss-card--light">
+        <div class="ss-header">
+          <div class="ss-avatar" style="background:var(--green)">N</div>
+          <div class="ss-name">nauczycielka klas I–III</div>
+        </div>
+        Gdy pokazałam uczniom „próbkę", aż im się źrenice powiększyły ze zdziwienia 😊 Dziś gościłam dyrekcję na lekcji otwartej — jakiego oni doznali szoku! 😁
+        <div class="ss-source">💬 Wiadomość prywatna</div>
+      </div>
+
+      <div class="ss-card ss-card--light">
+        <div class="ss-header">
+          <div class="ss-avatar" style="background:var(--navy)">HP</div>
+          <div class="ss-name">Hanna Pawłowicz</div>
+        </div>
+        Bardzo dziękuję za ogromną dawkę wiedzy i pokazanie możliwości AI. Siadam do tworzenia swoich pomocy dla dzieci. To będzie ciekawy rok szkolny!
+        <div class="ss-source">💬 Facebook Messenger</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA MID ═══ -->
+<section class="cta-mid" style="display:none">
+  <div class="container">
+    <div class="cta-mid__box">
+      <div>
+        <h2 class="cta-mid__title">Ucz się w wakacje,<br>wdrażaj we wrześniu</h2>
+        <p class="cta-mid__sub">Dostęp do materiałów na zawsze. Cena tylko do 8 czerwca.</p>
+      </div>
+      <a href="#cennik" class="btn btn--green" style="white-space:nowrap">Wybierz pakiet →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section class="pricing" id="cennik">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <span class="section-label">Cennik</span>
+      <h2 class="section-title">Wybierz swój pakiet</h2>
+      <p class="section-sub" style="margin: 0 auto 0">Oferta kończy się <strong style="color:#fff">2 czerwca o 10:00</strong>. Potem ceny wracają do regularnych.</p>
+    </div>
+
+    <div class="pricing__grid reveal-stagger" style="margin-left:auto; margin-right:auto">
+
+      <div class="plans-group" style="grid-template-columns:1fr; border-color:rgba(58,176,127,0.5); box-shadow:0 0 40px rgba(58,176,127,.07)">
+        <div class="plans-group__label">Pakiet Szybki Start</div>
+      <div class="plan plan--starter">
+        <div class="plan__name" style="color:rgba(255,255,255,.4)">Pakiet Szybki Start</div>
+        <div class="plan__old-price">197 zł</div>
+        <div class="plan__amount">127 zł</div>
+        <div class="plan__value">jednorazowo</div>
+        <ul class="plan__features">
+          <li><span class="plan__check">✓</span> Kurs „Lekcja na Autopilocie" (6 lekcji, 120 min)</li>
+          <li><span class="plan__check">✓</span> E-book „30 darmowych gier i aktywności dla każdej klasy"</li>
+          <li><span class="plan__check">✓</span> Dostęp do materiałów na zawsze</li>
+        </ul>
+        <a href="https://cart.easy.tools/checkout/54778299/lekcja-na-autopilocie-gry-i-aplikacje-z-ai-pod-twoj-przedmiot?plan=price_1Tdmw4IE1hBd4UtqLmPVjnSN" class="plan__cta" target="_blank" rel="noopener">Kupuję Szybki Start →</a>
+        <p class="plan__guarantee">🔒 Bezpieczna płatność</p>
+      </div>
+      </div><!-- /plans-group starter -->
+
+      <div class="plans-group">
+        <div class="plans-group__label">Pakiet Nowoczesny Nauczyciel — wybierz formę płatności</div>
+
+      <div class="plan plan--featured">
+        <div class="plan__badge">Najlepsza wartość</div>
+        <div class="plan__name">Jednorazowo</div>
+        <div class="plan__old-price">694 zł</div>
+        <div class="plan__amount">297 zł</div>
+        <div class="plan__value" style="color:rgba(255,255,255,.35)">jednorazowo</div>
+
+        <div class="plan__bonus-box">
+          <div class="plan__bonus-tag">🎓 Dodatkowy kurs w cenie</div>
+          <div class="plan__bonus-name">AI w edukacji 2.0</div>
+          <div class="plan__bonus-val">wartość regularna: <strong>497 zł</strong></div>
+          <button class="plan__bonus-toggle" aria-expanded="false">
+            Co zawiera ten kurs? <span class="plan__bonus-arrow">▼</span>
+          </button>
+          <div class="plan__bonus-body">
+            <ul>
+              <li><span class="bc">✓</span>66 lekcji video (7 godzin nagrań)</li>
+              <li><span class="bc">✓</span>9 modułów: chatboty, grafiki AI, ocenianie, wideo…</li>
+              <li><span class="bc">✓</span>8 gotowych asystentów AI do użycia od razu</li>
+              <li><span class="bc">✓</span>Certyfikat ukończenia</li>
+              <li><span class="bc">✓</span>Dostęp na zawsze + aktualizacje</li>
+            </ul>
+          </div>
+        </div>
+
+        <ul class="plan__features">
+          <li><span class="plan__check">✓</span> Wszystko z Pakietu Szybki Start</li>
+          <li><span class="plan__check">✓</span> Setki godzin oszczędności w nowym roku szkolnym</li>
+          <li><span class="plan__check">✓</span> Dostęp do aktualizacji i nowych narzędzi AI</li>
+        </ul>
+        <a href="https://cart.easy.tools/checkout/54778299/lekcja-na-autopilocie-gry-i-aplikacje-z-ai-pod-twoj-przedmiot?plan=price_1TdKusIE1hBd4UtqARQshrwl" class="plan__cta" target="_blank" rel="noopener">Wybieram Nowoczesny Nauczyciel →</a>
+        <p class="plan__guarantee" style="color:rgba(255,255,255,.25)">🔒 Bezpieczna płatność</p>
+      </div>
+
+      <div class="plan plan--installment">
+        <div class="plan__badge plan__badge--purple">Na raty</div>
+        <div class="plan__name" style="color:rgba(255,255,255,.4)">Na raty · 3 płatności</div>
+        <div class="plan__old-price">3 × 231 zł</div>
+        <div class="plan__installment-price">
+          <span class="plan__install-x">3 ×</span>
+          <span class="plan__amount">99 zł</span>
+        </div>
+        <div class="plan__install-total">łącznie 297 zł · bez odsetek</div>
+
+        <div class="plan__bonus-box">
+          <div class="plan__bonus-tag">🎓 Dodatkowy kurs w cenie</div>
+          <div class="plan__bonus-name">AI w edukacji 2.0</div>
+          <div class="plan__bonus-val">wartość regularna: <strong>497 zł</strong></div>
+          <button class="plan__bonus-toggle" aria-expanded="false">
+            Co zawiera ten kurs? <span class="plan__bonus-arrow">▼</span>
+          </button>
+          <div class="plan__bonus-body">
+            <ul>
+              <li><span class="bc">✓</span>66 lekcji video (7 godzin nagrań)</li>
+              <li><span class="bc">✓</span>9 modułów: chatboty, grafiki AI, ocenianie, wideo…</li>
+              <li><span class="bc">✓</span>8 gotowych asystentów AI do użycia od razu</li>
+              <li><span class="bc">✓</span>Certyfikat ukończenia</li>
+              <li><span class="bc">✓</span>Dostęp na zawsze + aktualizacje</li>
+            </ul>
+          </div>
+        </div>
+
+        <ul class="plan__features">
+          <li><span class="plan__check">✓</span> Wszystko z Pakietu Szybki Start</li>
+          <li><span class="plan__check">✓</span> Setki godzin oszczędności w nowym roku szkolnym</li>
+          <li style="border-bottom:none"><span class="plan__check">✓</span> Dostęp do aktualizacji i nowych narzędzi AI</li>
+        </ul>
+        <a href="https://cart.easy.tools/checkout/54778299/lekcja-na-autopilocie-gry-i-aplikacje-z-ai-pod-twoj-przedmiot?plan=price_1TdZFbIE1hBd4UtqIGsp7PE2" class="plan__cta" target="_blank" rel="noopener">Wybieram raty →</a>
+        <p class="plan__guarantee" style="color:rgba(255,255,255,.25)">🔒 Bezpieczna płatność</p>
+      </div>
+
+      </div><!-- /plans-group -->
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-title">Masz pytania?<br>Mamy odpowiedzi</h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">Czy muszę znać się na technologii?<span class="faq-q__icon">+</span></button>
+        <div class="faq-a">Nie. Kurs jest zaprojektowany tak, żebyś mogła zacząć od zera. Każdy etap prowadzę krok po kroku — od rejestracji w narzędziu do gotowej gry na lekcji.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Jak długo trwa kurs?<span class="faq-q__icon">+</span></button>
+        <div class="faq-a">5 lekcji wideo, łącznie 120 minut. Możesz przejść przez całość w jeden wieczór — przy mrożonej kawie.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Czy AI nie popełni błędu merytorycznego?<span class="faq-q__icon">+</span></button>
+        <div class="faq-a">To jedna z najczęstszych obaw. Dlatego w kursie uczę Cię gotowych promptów weryfikujących — eliminują ryzyko błędu zanim cokolwiek trafi do uczniów.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Na jak długo mam dostęp do materiałów?<span class="faq-q__icon">+</span></button>
+        <div class="faq-a">Na zawsze. Uczysz się w wakacje, wdrażasz we wrześniu — i możesz wracać do kursu kiedy chcesz, bez limitów czasowych.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Czym różnią się pakiety?<span class="faq-q__icon">+</span></button>
+        <div class="faq-a">Szybki Start to kurs o 6 platformach quiz-AI + e-book (127 zł). Nowoczesny Nauczyciel zawiera dodatkowo pełny kurs „AI w edukacji 2.0" o wartości 479 zł — cała wiedza w cenie 297 zł.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Czy dostanę fakturę?<span class="faq-q__icon">+</span></button>
+        <div class="faq-a">Tak, fakturę VAT wystawiamy automatycznie po zakupie. Dane do faktury wpisujesz przy kasie.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FINAL CTA ═══ -->
+<section class="final-cta">
+  <div class="container">
+    <div class="final-cta__box">
+      <h2 class="final-cta__title">Zajmij swoje miejsce teraz</h2>
+      <p class="final-cta__sub">Oferta kończy się 2 czerwca o 10:00. Ucz się w wakacje, wdrażaj we wrześniu.</p>
+
+      <div class="countdown-wrap">
+        <div class="cd-unit"><span class="cd-num" id="cd-d">07</span><span class="cd-label">dni</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit"><span class="cd-num" id="cd-h">00</span><span class="cd-label">godz</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit"><span class="cd-num" id="cd-m">00</span><span class="cd-label">min</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit"><span class="cd-num" id="cd-s">00</span><span class="cd-label">sek</span></div>
+      </div>
+
+      <div class="final-cta__btns">
+        <a href="https://cart.easy.tools/checkout/54778299/lekcja-na-autopilocie-gry-i-aplikacje-z-ai-pod-twoj-przedmiot?plan=price_1Tdmw4IE1hBd4UtqLmPVjnSN" class="btn btn--green" target="_blank" rel="noopener">Kupuję Szybki Start — 127 zł →</a>
+        <a href="https://cart.easy.tools/checkout/54778299/lekcja-na-autopilocie-gry-i-aplikacje-z-ai-pod-twoj-przedmiot?plan=price_1TdKusIE1hBd4UtqARQshrwl" class="btn btn--dark" target="_blank" rel="noopener">Nowoczesny Nauczyciel — 297 zł</a>
+      </div>
+      <p class="final-cta__meta">🔒 Bezpieczna płatność</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__logo">
+        <img src="ANO_podstawowa_jasna_pion.png" alt="Akademia Nauczyciela Online" style="filter:brightness(0) invert(1);opacity:.5;height:40px;width:auto;display:block">
+      </div>
+      <div class="footer__links">
+        <a href="#program">Program</a>
+        <a href="#cennik">Cennik</a>
+        <a href="#faq">FAQ</a>
+        <a href="#" id="open-privacy">Polityka prywatności</a>
+      </div>
+    </div>
+    <p class="footer__copy">© 2026 Akademia Nauczyciela Online · Klaudia Rogalska-Kalota · Wszelkie prawa zastrzeżone</p>
+  </div>
+</footer>
+
+<!-- ═══ MODAL: POLITYKA PRYWATNOŚCI ═══ -->
+<div class="modal-overlay" id="modal-privacy">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>Polityka prywatności</h2>
+      <button class="modal-close" id="close-privacy">✕</button>
+    </div>
+    <div class="modal-body">
+      <h3>Administrator danych</h3>
+      <p>Administratorem danych osobowych jest Klaudia Rogalska-Kalota, prowadząca działalność pod nazwą Akademia Nauczyciela Online. Kontakt: kontakt@klaudiarogalska.pl</p>
+
+      <h3>Zakres i cel przetwarzania</h3>
+      <p>Dane osobowe (imię, adres e-mail) zbierane są wyłącznie w celu realizacji zamówienia oraz komunikacji związanej z kursem. Podstawą przetwarzania jest art. 6 ust. 1 lit. b RODO (wykonanie umowy).</p>
+
+      <h3>Pliki cookies</h3>
+      <p>Serwis korzysta z plików cookies niezbędnych do jego działania. Cookies analityczne (Google Analytics) są używane wyłącznie za Twoją zgodą. Możesz zarządzać cookies w ustawieniach przeglądarki.</p>
+
+      <h3>Prawa użytkownika</h3>
+      <p>Przysługuje Ci prawo dostępu do danych, sprostowania, usunięcia, ograniczenia przetwarzania, przenoszenia danych oraz wniesienia sprzeciwu. Możesz też wnieść skargę do Prezesa UODO (uodo.gov.pl).</p>
+
+      <h3>Okres przechowywania</h3>
+      <p>Dane przechowujemy przez czas realizacji zamówienia i okres wymagany przepisami podatkowymi (5 lat).</p>
+
+      <h3>Kontakt</h3>
+      <p>W sprawach dotyczących danych osobowych możesz kontaktować się pod adresem: kontakt@klaudiarogalska.pl</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── TIMER ──
+  const DEADLINE = new Date('2026-06-08T23:59:59').getTime();
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function updateTimers() {
+    const now = Date.now();
+    const diff = Math.max(0, DEADLINE - now);
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+
+    // top bar
+    const tbD = document.getElementById('tb-d');
+    const tbH = document.getElementById('tb-h');
+    const tbM = document.getElementById('tb-m');
+    if (tbD) tbD.textContent = pad(d);
+    if (tbH) tbH.textContent = pad(h);
+    if (tbM) tbM.textContent = pad(m);
+
+    // countdown
+    const cdD = document.getElementById('cd-d');
+    const cdH = document.getElementById('cd-h');
+    const cdM = document.getElementById('cd-m');
+    const cdS = document.getElementById('cd-s');
+    if (cdD) cdD.textContent = pad(d);
+    if (cdH) cdH.textContent = pad(h);
+    if (cdM) cdM.textContent = pad(m);
+    if (cdS) cdS.textContent = pad(s);
+  }
+
+  updateTimers();
+  setInterval(updateTimers, 1000);
+
+  // ── NAV SCROLL ──
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // ── FAQ ACCORDION ──
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ── BONUS ACCORDION ──
+  document.querySelectorAll('.plan__bonus-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const body = toggle.nextElementSibling;
+      const isOpen = toggle.classList.contains('open');
+      toggle.classList.toggle('open', !isOpen);
+      body.classList.toggle('open', !isOpen);
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+
+  // ── SCROLL REVEAL ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => observer.observe(el));
+
+  // ── PRIVACY MODAL ──
+  const modalPrivacy = document.getElementById('modal-privacy');
+  document.getElementById('open-privacy').addEventListener('click', e => {
+    e.preventDefault();
+    modalPrivacy.classList.add('open');
+  });
+  document.getElementById('close-privacy').addEventListener('click', () => modalPrivacy.classList.remove('open'));
+  modalPrivacy.addEventListener('click', e => { if (e.target === modalPrivacy) modalPrivacy.classList.remove('open'); });
+
+  // ── CURSOR GLOW ──
+  const glow = document.getElementById('cursorGlow');
+  if (glow) {
+    let gx = window.innerWidth / 2, gy = window.innerHeight / 2;
+    document.addEventListener('mousemove', e => { gx = e.clientX; gy = e.clientY; }, { passive: true });
+    (function tick() {
+      glow.style.left = gx + 'px';
+      glow.style.top  = gy + 'px';
+      requestAnimationFrame(tick);
+    })();
+  }
+
+  // ── 3D TILT: MOCKUP ──
+  const mockupImg = document.querySelector('.hero__mockup-img');
+  const mockupWrap = mockupImg && mockupImg.parentElement;
+  if (mockupWrap && window.matchMedia('(hover: hover)').matches) {
+    mockupWrap.style.cursor = 'pointer';
+    mockupWrap.addEventListener('mousemove', e => {
+      const r = mockupWrap.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width  - .5;
+      const y = (e.clientY - r.top)  / r.height - .5;
+      mockupImg.style.animation = 'none';
+      mockupImg.style.transition = 'transform .08s linear, box-shadow .2s';
+      mockupImg.style.transform = `perspective(900px) rotateY(${x * 18}deg) rotateX(${-y * 14}deg) scale(1.05)`;
+    }, { passive: true });
+    mockupWrap.addEventListener('mouseleave', () => {
+      mockupImg.style.transition = 'transform .6s cubic-bezier(.34,1.56,.64,1)';
+      mockupImg.style.transform  = 'perspective(900px) rotateY(0deg) rotateX(0deg) scale(1)';
+      setTimeout(() => {
+        mockupImg.style.animation = '';
+        mockupImg.style.transform = '';
+        mockupImg.style.transition = '';
+      }, 650);
+    });
+  }
+
+  // ── 3D TILT: TESTIMONIAL + STAT CARDS ──
+  document.querySelectorAll('.ss-card, .stat-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width  - .5;
+      const y = (e.clientY - r.top)  / r.height - .5;
+      card.style.transform = `perspective(700px) rotateY(${x * 12}deg) rotateX(${-y * 10}deg) translateY(-6px) scale(1.02)`;
+      card.style.transition = 'box-shadow .2s';
+      card.style.boxShadow = card.classList.contains('ss-card--light')
+        ? '0 16px 48px rgba(32,34,77,.15)'
+        : '0 16px 48px rgba(0,0,0,.35)';
+    }, { passive: true });
+    card.addEventListener('mouseleave', () => {
+      card.style.transition = 'transform .45s cubic-bezier(.34,1.56,.64,1), box-shadow .3s';
+      card.style.transform  = '';
+      card.style.boxShadow  = '';
+    });
+  });
+
+  // ── 3D TILT: PROGRAM CARDS ──
+  document.querySelectorAll('.mod-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width  - .5;
+      const y = (e.clientY - r.top)  / r.height - .5;
+      card.style.transform = `translateY(-6px) perspective(600px) rotateY(${x * 10}deg) rotateX(${-y * 8}deg)`;
+      card.style.transition = 'box-shadow .2s, border-color .2s';
+    }, { passive: true });
+    card.addEventListener('mouseleave', () => {
+      card.style.transition = 'transform .45s cubic-bezier(.34,1.56,.64,1), box-shadow .25s, border-color .25s';
+      card.style.transform  = '';
+    });
+  });
+
+  // ── HERO VIDEO PLAYER ──
+  const heroVideo = document.getElementById('heroVideo');
+  if (heroVideo) {
+    const YT_ID = ''; // ← wklej ID YouTube np. 'dQw4w9WgXcQ'
+    heroVideo.addEventListener('click', () => {
+      if (!YT_ID) return;
+      heroVideo.innerHTML = `<iframe src="https://www.youtube.com/embed/${YT_ID}?autoplay=1&rel=0" allow="autoplay; fullscreen" allowfullscreen style="border-radius:22px"></iframe>`;
+    });
+  }
+</script>
+
+</body>
+</html>

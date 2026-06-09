@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Od Tablicy do Biznesu Online — Darmowy Webinar | Klaudia Rogalska-Kalota</title>
+  <meta name="description" content="Dowiedz się, jak zamienić swoją wiedzę nauczycielską w dochodowy e-book, kurs lub subskrypcję z pomocą AI. Zarejestruj się bezpłatnie na webinar 30 czerwca.">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <!-- Hidden iframe for GetResponse -->
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <header class="header-nav">
+    <div class="container nav-container">
+      <a href="#" class="logo-link">
+        <img src="ANO_podstawowa_zielony_1_poziom.png" alt="Akademia Nauczyciela Online" class="logo-img">
+      </a>
+      <nav class="nav-links">
+        <a href="#dla-kogo"   class="nav-item">Dla kogo</a>
+        <a href="#program"    class="nav-item">Program</a>
+        <a href="#kalkulator" class="nav-item">Oblicz zysk</a>
+        <a href="#opinie"     class="nav-item">Opinie</a>
+        <a href="#faq"        class="nav-item">FAQ</a>
+        <a href="#zapisz-sie" class="btn btn-primary" style="padding: 10px 22px; font-size: 0.85rem;">
+          <span>Zapisz się bezpłatnie</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       KROK 1 — STRONA ZAPISÓW
+       ============================================================ -->
+  <div id="view-webinar" class="page-view active">
+
+    <!-- ─── HERO ─── -->
+    <section class="hero-section">
+
+      <!-- Fullbleed background photo -->
+      <div class="hero-media">
+        <img src="2O9A0761.jpg" alt="Klaudia Rogalska-Kalota">
+      </div>
+
+      <!-- Content over gradient -->
+      <div class="container hero-grid">
+        <div class="hero-content">
+
+          <span class="hero-pre-headline">Darmowy webinar szkoleniowy dla nauczycieli i edukatorów</span>
+
+          <h1 class="hero-headline">
+            Od tablicy<br>
+            <span class="text-gradient">do biznesu<br>online.</span>
+          </h1>
+
+          <p class="hero-subheadline">
+            Jak stworzyć produkt cyfrowy, który wygeneruje Twoją drugą pensję (z pomocą AI). Bez rzucania etatu i bez barier technologicznych.
+          </p>
+
+          <div class="hero-logistics-bar">
+            <div class="logistic-item">
+              <svg class="logistic-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+              <div>
+                <div class="logistic-title">Kiedy</div>
+                <div class="logistic-desc">30 czerwca · wtorek · 20:00</div>
+              </div>
+            </div>
+            <div class="logistic-item">
+              <svg class="logistic-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+              </svg>
+              <div>
+                <div class="logistic-title">Gdzie</div>
+                <div class="logistic-desc">Transmisja online</div>
+              </div>
+            </div>
+            <div class="logistic-item">
+              <svg class="logistic-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+              </svg>
+              <div>
+                <div class="logistic-title">Prowadząca</div>
+                <div class="logistic-desc">Klaudia Rogalska-Kalota</div>
+              </div>
+            </div>
+          </div>
+
+          <a href="#zapisz-sie" class="btn btn-primary btn-large">
+            <span>Rezerwuję bezpłatne miejsce →</span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── REJESTRACJA (FORM) ─── -->
+    <section id="zapisz-sie" style="background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+      <div class="container-narrow">
+        <div class="glass-card" style="border-color: var(--border-mint);">
+          <div style="text-align: center; margin-bottom: 28px;">
+            <span class="section-label" style="display: block; margin-bottom: 8px;">Rejestracja</span>
+            <h2 style="font-size: 1.75rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 10px; color: var(--color-secondary);">Zarezerwuj swoje darmowe miejsce</h2>
+            <p style="color: var(--text-secondary); font-size: 0.92rem;">Wypełnij poniższe dane — natychmiastowe potwierdzenie + e-book w bonusie.</p>
+          </div>
+
+          <form id="webinar-signup-form" action="https://app.getresponse.com/add_subscriber.html" method="post" target="hidden_iframe">
+            <input type="hidden" name="campaign_token" value="YOUR_CAMPAIGN_TOKEN_HERE">
+            <input type="hidden" name="thank_you_url" value="">
+
+            <div class="form-group">
+              <label for="field-name" style="display:block; font-weight: 700; font-family: var(--font-heading); margin-bottom: 7px; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-secondary);">Imię *</label>
+              <input type="text" name="name" id="field-name" class="form-input" placeholder="Wpisz swoje imię..." required>
+            </div>
+
+            <div class="form-group">
+              <label for="field-email" style="display:block; font-weight: 700; font-family: var(--font-heading); margin-bottom: 7px; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-secondary);">Adres e-mail *</label>
+              <input type="email" name="email" id="field-email" class="form-input" placeholder="Twój najlepszy e-mail..." required>
+            </div>
+
+            <label class="checkbox-container">
+              <input type="checkbox" id="field-terms" required checked>
+              <span class="checkmark"></span>
+              <span style="font-size: 0.82rem; line-height: 1.45; display: block;">
+                Zapisuję się na darmowy webinar i akceptuję regulamin strony oraz politykę prywatności.
+              </span>
+            </label>
+
+            <div class="checkbox-vip-container">
+              <label class="checkbox-container" style="margin-bottom: 0;">
+                <input type="checkbox" name="custom_vip" id="field-vip">
+                <span class="checkmark" style="margin-top: 0;"></span>
+                <span style="font-size: 0.86rem; line-height: 1.45; display: block; margin-top: -1px;">
+                  <span class="vip-badge">VIP Lista</span>
+                  <span class="vip-text-main">Chcę dołączyć do listy VIP nowej edycji Akademii Edu Biznesu.</span>
+                  Zaznacz, jeśli chcesz otrzymać ofertę premium przed innymi, na najlepszych warunkach i zyskać szansę na bezpłatną konsultację 1:1.
+                </span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-submit">
+              <span>ZAPISZ SIĘ BEZPŁATNIE →</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── DLA KOGO ─── -->
+    <section id="dla-kogo" class="reveal-hidden">
+      <div class="container">
+        <div class="section-title-wrapper">
+          <span class="section-label">Dla kogo?</span>
+          <h2 class="section-title">Dla kogo jest to spotkanie?</h2>
+          <p class="section-subtitle">Sprawdź, czy odnajdujesz siebie w jednym z tych profili.</p>
+        </div>
+
+        <div class="for-whom-grid">
+          <div class="glass-card">
+            <div class="for-whom-icon">
+              <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+              </svg>
+            </div>
+            <h3 class="for-whom-title">Nauczyciele z wypaleniem</h3>
+            <p style="color: var(--text-secondary); line-height: 1.65; font-size: 0.95rem;">Nauczycieli, którzy czują wypalenie systemem szkolnym i chcą polepszyć lub zmienić swoją sytuację zawodową.</p>
+          </div>
+
+          <div class="glass-card">
+            <div class="for-whom-icon">
+              <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="for-whom-title">Korepetytorzy i lektorzy</h3>
+            <p style="color: var(--text-secondary); line-height: 1.65; font-size: 0.95rem;">Korepetytorów i lektorów językowych, którzy chcą przestać sprzedawać swój czas na godziny.</p>
+          </div>
+
+          <div class="glass-card">
+            <div class="for-whom-icon">
+              <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+              </svg>
+            </div>
+            <h3 class="for-whom-title">Ambitni edukatorzy</h3>
+            <p style="color: var(--text-secondary); line-height: 1.65; font-size: 0.95rem;">Każdego edukatora, który chce pracować na własnych warunkach i zyskać niezależność finansową.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── PROGRAM ─── -->
+    <section id="program" class="reveal-hidden" style="background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+      <div class="container learn-grid">
+        <div>
+          <span class="section-label">Konkretna wiedza</span>
+          <h2 style="font-size: clamp(1.9rem, 3.8vw, 2.8rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 20px; color: var(--color-secondary);">Czego dowiesz się podczas webinaru?</h2>
+          <p style="color: var(--text-secondary); line-height: 1.72; margin-bottom: 32px; font-size: 1.02rem;">
+            Zaplanowałam to spotkanie tak, aby wyjść z sali z gotową receptą. Zero lania wody. Pokażę Ci trzy kluczowe etapy budowy Twojego drugiego etatu online.
+          </p>
+          <a href="#zapisz-sie" class="btn btn-primary">
+            <span>Rezerwuję darmowe miejsce →</span>
+          </a>
+        </div>
+
+        <div class="learn-steps">
+          <div class="learn-step">
+            <div class="learn-step-number">1</div>
+            <div>
+              <h3 class="learn-step-title">Wybór zyskownego tematu</h3>
+              <p style="color: var(--text-secondary); line-height: 1.65; font-size: 0.95rem;">
+                Jak w 15 minut znaleźć pomysł na produkt cyfrowy w Twojej dziedzinie, za który rodzice lub uczniowie zapłacą z zachwytem.
+              </p>
+            </div>
+          </div>
+
+          <div class="learn-step">
+            <div class="learn-step-number">2</div>
+            <div>
+              <h3 class="learn-step-title">Przyspieszenie z AI (Live demo)</h3>
+              <p style="color: var(--text-secondary); line-height: 1.65; font-size: 0.95rem;">
+                Pokonaj barierę techniczną. Zobacz na żywo, jak sztuczna inteligencja tworzy konspekt i strukturę Twojego produktu w 3 minuty.
+              </p>
+            </div>
+          </div>
+
+          <div class="learn-step">
+            <div class="learn-step-number">3</div>
+            <div>
+              <h3 class="learn-step-title">Strategia „Drugiej Pensji"</h3>
+              <p style="color: var(--text-secondary); line-height: 1.65; font-size: 0.95rem;">
+                Prosty plan krok po kroku, jak sprzedać pierwsze 50 sztuk produktu bez posiadania wielkich zasięgów i budżetu reklamowego.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── CO OTRZYMUJESZ ─── -->
+    <section class="reveal-hidden">
+      <div class="container">
+        <div class="section-title-wrapper" style="text-align: center;">
+          <span class="section-label">Co otrzymujesz?</span>
+          <h2 class="section-title" style="margin: 0 auto 14px; color: var(--color-secondary);">Pakiet uczestnika webinaru</h2>
+          <p class="section-subtitle" style="margin: 0 auto;">Każdy zarejestrowany uczestnik otrzymuje pełne wsparcie.</p>
+        </div>
+
+        <div class="get-grid">
+          <div class="get-card">
+            <svg class="get-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="get-card-text">Udział w webinarze na żywo 30 czerwca</span>
+          </div>
+          <div class="get-card">
+            <svg class="get-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="get-card-text">Nagranie webinaru dostępne przez 7 dni</span>
+          </div>
+          <div class="get-card">
+            <svg class="get-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="get-card-text">Imienny certyfikat uczestnictwa</span>
+          </div>
+        </div>
+
+        <div class="bonus-box">
+          <div style="display: flex; justify-content: center;">
+            <img src="assets/ebook_mockup.png" alt="Narzędziownik Nauczyciela E-book" style="width: 200px; max-width: 100%;">
+          </div>
+          <div>
+            <span class="bonus-badge">Główny Bonus</span>
+            <h3 class="bonus-title">E-book „Narzędziownik Nauczyciela"</h3>
+            <p style="color: var(--text-secondary); line-height: 1.72; font-size: 1rem; margin-bottom: 24px;">
+              Dla każdej osoby, która pojawi się na webinarze na żywo w dniu 30 czerwca przygotowałam bonus w postaci e-booka z listą i opisem narzędzi, których używam do prowadzenia biznesu online.
+            </p>
+            <a href="#zapisz-sie" class="btn btn-accent">
+              <span>Zarejestruj się, aby odebrać e-book →</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── KALKULATOR ─── -->
+    <section id="kalkulator" class="reveal-hidden" style="background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+      <div class="container">
+        <div class="section-title-wrapper" style="text-align: center;">
+          <span class="section-label">Symulator finansowy</span>
+          <h2 class="section-title" style="margin: 0 auto 14px; color: var(--color-secondary);">Ile możesz zarobić na produktach cyfrowych?</h2>
+          <p class="section-subtitle" style="margin: 0 auto;">Przesuń suwaki i sprawdź szacunkowe zarobki przy zaledwie 2% konwersji Twoich odbiorców.</p>
+        </div>
+
+        <div class="calculator-box">
+          <div class="calc-slider-group">
+            <div class="calc-label">
+              <span>Rozmiar Twojej bazy (fani, uczniowie, newsletter):</span>
+              <span id="calc-audience-val" class="calc-val">1 000</span>
+            </div>
+            <input type="range" id="calc-audience" class="calc-slider" min="100" max="10000" step="100" value="1000">
+          </div>
+
+          <div class="calc-slider-group">
+            <div class="calc-label">
+              <span>Cena Twojego produktu cyfrowego (kurs, e-book):</span>
+              <span id="calc-price-val" class="calc-val">199 PLN</span>
+            </div>
+            <input type="range" id="calc-price" class="calc-slider" min="49" max="999" step="10" value="199">
+          </div>
+
+          <div class="calc-result">
+            <div class="calc-result-title">Twój potencjalny przychód z jednej kampanii</div>
+            <div id="calc-result-value" class="calc-result-value">3 980 PLN</div>
+          </div>
+          <p class="calc-disclaimer">* Wyliczenia bazują na ostrożnej konwersji rzędu 2%.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── BIO ─── -->
+    <section class="bio-sticky-section">
+      <div class="bio-sticky-inner">
+
+        <div class="bio-sticky-left">
+          <img class="bio-sticky-photo" src="2O9A0785.jpg" alt="Klaudia Rogalska-Kalota">
+        </div>
+
+        <div class="bio-sticky-right">
+
+          <div class="bio-sticky-item reveal-hidden">
+            <span class="section-label">01 · Prowadząca</span>
+            <h3>Klaudia Rogalska-Kalota</h3>
+            <span class="bio-subtitle">Mentorka · Założycielka Akademii Edu Biznesu</span>
+            <p class="bio-text">
+              Twórczyni kursów online i założycielka Akademii Nauczyciela Online. Trenerka nauczycieli w ogólnopolskich projektach Lekcja Enter i Edukacja Włączająca. Od lat pokazuję, że technologia może być sprzymierzeńcem — nie wrogiem. 30 czerwca pokażę Ci system, który zadziałał u setek edukatorów.
+            </p>
+          </div>
+
+          <div class="bio-sticky-item reveal-hidden">
+            <span class="section-label">02 · Doświadczenie</span>
+            <h3>Certyfikowany Edukator Google II stopnia</h3>
+            <p class="bio-text">
+              Z kursów Akademii skorzystało blisko 12 000 nauczycieli z całej Polski. Kursy o AI i nowych technologiach niezmiennie od ponad 3 lat przyciągają nowych uczestników — bo są konkretne i wdrażalne od razu. 97% uczestników poleca szkolenia znajomym.
+            </p>
+            <div class="bio-sticky-stat"><strong>12 000+</strong> przeszkolonych nauczycieli</div>
+          </div>
+
+          <div class="bio-sticky-item reveal-hidden">
+            <span class="section-label">03 · Społeczność</span>
+            <h3>130 000 obserwujących na Instagramie</h3>
+            <p class="bio-text">
+              130-tysięczna społeczność nauczycieli zainteresowanych nowoczesnymi technologiami i edukacją online. Autorka tekstów w „Kreatywnym Wychowawcy". Każdy post to gotowy przepis — bez akademickiego żargonu, od razu do zastosowania.
+            </p>
+            <div class="bio-sticky-stat"><strong>130 000</strong> obserwujących · Instagram</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── OPINIE ─── -->
+    <section id="opinie" class="reveal-hidden" style="background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+      <div class="container">
+        <div class="section-title-wrapper" style="text-align: center;">
+          <span class="section-label">Sukcesy uczestników</span>
+          <h2 class="section-title" style="margin: 0 auto 14px; color: var(--color-secondary);">Co mówią absolwenci Akademii?</h2>
+          <p class="section-subtitle" style="margin: 0 auto;">Opinie nauczycieli, którzy uczestniczyli w szkoleniach i kursach Klaudii.</p>
+        </div>
+
+        <div class="testimonials-slider">
+          <div id="testimonials-track" class="testimonials-track">
+
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">Polecam szkolenie AI w edukacji u Klaudii – mnóstwo inspiracji i pomysłów do wykorzystania od zaraz. W tym temacie – tylko @trenernauczycielionline! ❤️</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-info">
+                    <h4>K. — uczestniczka szkolenia</h4>
+                    <p>Instagram</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">Pierwszy raz spotykam się z czymś takim, żeby po szkoleniu odbyło się spotkanie z możliwością zadawania pytań – rewelacja! 😍 Będę wypatrywać kolejnych!</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-info">
+                    <h4>B. — uczestniczka</h4>
+                    <p>Instagram</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">A szkolenie pierwsza klasa! Bardzo dużo ciekawych rzeczy się dowiedziałam 😊 Pomoże mi bardzo zautomatyzować wiele działań. Z niecierpliwością czekam na kolejne!</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-info">
+                    <h4>J. — nauczycielka</h4>
+                    <p>Facebook</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">Gdy pokazałam uczniom „próbkę", aż im się źrenice powiększyły ze zdziwienia 😊 Dziś gościłam dyrekcję na lekcji otwartej — jakiego oni doznali szoku! 😁</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-info">
+                    <h4>N. — nauczycielka klas I–III</h4>
+                    <p>Wiadomość prywatna</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">Bardzo dziękuję za ogromną dawkę wiedzy i pokazanie możliwości AI. Siadam do tworzenia swoich pomocy dla dzieci. To będzie ciekawy rok szkolny!</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-info">
+                    <h4>Hanna Pawłowicz</h4>
+                    <p>Facebook Messenger</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">Kurs jest krótki i konkretny — przeszłam przez wszystko w jeden wieczór. We wrześniu wdrażam od razu. Dziękuję Klaudii! 🙌</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-info">
+                    <h4>Karolina P. — nauczycielka biologii</h4>
+                    <p>Facebook</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">Uczniowie sami proszą o więcej — w 10 minut zrobiłam quiz z całego semestru. Nigdy wcześniej tak się nie angażowali. 🎮</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-info">
+                    <h4>A. — nauczycielka historii</h4>
+                    <p>Instagram</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-slide">
+              <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">Klaudia w swoich szkoleniach zmienia myślenie od podstaw. Uczniowie liczą punkty, dyskutują o strategii — angażują się bardziej niż kiedykolwiek 💡</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-info">
+                    <h4>M. — nauczycielka matematyki</h4>
+                    <p>Instagram</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div id="testimonials-dots" class="testimonials-nav"></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── FAQ ─── -->
+    <section id="faq" class="reveal-hidden">
+      <div class="container-narrow">
+        <div class="section-title-wrapper" style="text-align: center;">
+          <span class="section-label">Masz pytania?</span>
+          <h2 class="section-title" style="margin: 0 auto 14px; color: var(--color-secondary);">Najczęstsze pytania i odpowiedzi</h2>
+          <p class="section-subtitle" style="margin: 0 auto;">Rozwiej swoje wątpliwości przed webinarem.</p>
+        </div>
+
+        <div class="accordion-group">
+          <details class="disclosure" name="webinar-faq" open>
+            <summary>Czy udział w webinarze jest naprawdę w 100% bezpłatny?</summary>
+            <div class="disclosure-content">
+              Tak. Webinar oraz e-book „Narzędziownik Nauczyciela" są całkowicie bezpłatne. Pod koniec webinaru przedstawiona zostanie możliwość dołączenia do Akademii Edu Biznesu (oferta premium), ale sam udział w webinarze nie wiąże się z żadnymi zobowiązaniami finansowymi.
+            </div>
+          </details>
+
+          <details class="disclosure" name="webinar-faq">
+            <summary>Co jeśli nie będę mógł uczestniczyć na żywo 30 czerwca?</summary>
+            <div class="disclosure-content">
+              Każda zarejestrowana osoba otrzyma dostęp do nagrania webinaru na 7 dni. Zdecydowanie zalecam udział na żywo — tylko wtedy otrzymasz e-book „Narzędziownik Nauczyciela" i szansę na zadanie pytań Klaudii na czacie.
+            </div>
+          </details>
+
+          <details class="disclosure" name="webinar-faq">
+            <summary>Nie znam się na technologii. Czy dam sobie radę?</summary>
+            <div class="disclosure-content">
+              To webinar idealny dla Ciebie! Pokażemy narzędzia sztucznej inteligencji, które wykonują najcięższą techniczną pracę za Ciebie w kilka kliknięć. Nie potrzebujesz umiejętności programistycznych ani drogiego oprogramowania.
+            </div>
+          </details>
+
+          <details class="disclosure" name="webinar-faq">
+            <summary>Czy muszę rzucić pracę w szkole, aby zacząć?</summary>
+            <div class="disclosure-content">
+              Absolutnie nie. Program skupia się na modelu bezpiecznego budowania „drugiej pensji" po godzinach lekcyjnych. To Ty decydujesz, kiedy i ile pracujesz, bez ryzykowania utraty stałego źródła dochodu.
+            </div>
+          </details>
+
+          <details class="disclosure" name="webinar-faq">
+            <summary>Jak dostanę link do transmisji i potwierdzenie zapisu?</summary>
+            <div class="disclosure-content">
+              Po wypełnieniu formularza rejestracyjnego natychmiast wyślemy Ci wiadomość e-mail z potwierdzeniem i linkiem do transmisji. Pamiętaj, aby sprawdzić folder SPAM, jeśli wiadomość nie pojawi się w ciągu kilku minut. Dzień przed webinarem wyślemy Ci też przypomnienie.
+            </div>
+          </details>
+
+          <details class="disclosure" name="webinar-faq">
+            <summary>Czy dostanę certyfikat za udział w webinarze?</summary>
+            <div class="disclosure-content">
+              Tak! Każda osoba, która pojawi się na webinarze na żywo 30 czerwca, otrzyma imienny certyfikat uczestnictwa w formie PDF do pobrania. Certyfikat potwierdza udział w szkoleniu z zakresu budowania biznesu edukacyjnego online.
+            </div>
+          </details>
+
+          <details class="disclosure" name="webinar-faq">
+            <summary>Czy potrzebuję mieć dużo obserwujących lub bloga, żeby zacząć?</summary>
+            <div class="disclosure-content">
+              Nie. Na webinarze pokażę Ci, jak sprzedać pierwsze 50 sztuk produktu nawet bez wielkich zasięgów. Ważna jest odpowiednio dobrana nisza i strategia — a tego nauczysz się podczas naszego spotkania.
+            </div>
+          </details>
+        </div>
+
+        <div style="text-align: center; margin-top: 56px;">
+          <a href="#zapisz-sie" class="btn btn-primary btn-large">
+            <span>Zarezerwuj bezpłatne miejsce →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /view-webinar -->
+
+
+  <!-- ============================================================
+       KROK 2 — OTO
+       ============================================================ -->
+  <div id="view-oto" class="page-view">
+
+    <div class="progress-bar-container">
+      <div class="progress-fill"></div>
+      <span class="progress-text">
+        <svg class="progress-success-icon" style="width:16px;height:16px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+        </svg>
+        KROK 1/2: Rejestracja udana! Twoje miejsce na webinarze jest bezpieczne.
+      </span>
+    </div>
+
+    <div class="warning-banner">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+      </svg>
+      UWAGA! Ta oferta pojawi się tylko raz. Nie odświeżaj tej strony.
+    </div>
+
+    <section class="oto-hero">
+      <div class="container">
+        <h2 class="oto-headline">
+          Zrób pierwszy krok w stronę swojego biznesu online i<br>
+          <span class="text-gradient-accent">wygeneruj profesjonalne zdjęcia z AI w 15 minut!</span>
+        </h2>
+        <p class="oto-subheadline">
+          Zanim nauczysz się zarabiać drugą pensję na webinarze 30 czerwca, zrób pierwszy krok. Wygeneruj profesjonalną, biznesową sesję zdjęciową w 15 minut. Bez wychodzenia z domu i bez płacenia 600 PLN fotografowi.
+        </p>
+        <div class="countdown-wrapper">
+          <div class="countdown-box">
+            <div id="timer-min" class="countdown-num">15</div>
+            <div class="countdown-lbl">Minut</div>
+          </div>
+          <div style="font-family: var(--font-heading); font-weight: 900; font-size: 2rem; color: var(--color-primary);">:</div>
+          <div class="countdown-box">
+            <div id="timer-sec" class="countdown-num">00</div>
+            <div class="countdown-lbl">Sekund</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="oto-problem-section">
+      <div class="container oto-problem-grid">
+        <div class="oto-problem-text">
+          <span class="section-label">Dlaczego to jest ważne?</span>
+          <h3>Dlaczego Twoje obecne zdjęcie blokuje Twoją sprzedaż?</h3>
+          <p>
+            Nauczyciele przechodzący do biznesu online często popełniają ten sam błąd: <strong>ukrywają się za grafikami, zdjęciami z wakacji albo domowymi selfie.</strong> Ludzie kupują od ekspertów, którym ufają. Aby zarabiać jak przedsiębiorca, musisz wyglądać jak przedsiębiorca.
+          </p>
+          <p>
+            <strong>Rozwiązanie:</strong> Nie musisz rezerwować studia, kupować drogich ubrań ani stresować się przed obiektywem. Sztuczna inteligencja zrobi to za Ciebie. W tym mini-kursie pokażę Ci, jak za pomocą darmowych narzędzi AI zamienić zwykłe selfie w elegancki, biznesowy portret.
+          </p>
+        </div>
+        <div>
+          <img src="assets/ai_photos_mockup.png" alt="Wizualizacja sesji zdjęciowej z AI" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); width: 100%;">
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-title-wrapper" style="text-align: center;">
+          <span class="section-label">Zawartość kursu</span>
+          <h2 class="section-title" style="margin: 0 auto 14px;">Co konkretnie kupujesz?</h2>
+          <p class="section-subtitle" style="margin: 0 auto;">Kompletny pakiet, który otrzymasz natychmiast na platformie szkoleniowej.</p>
+        </div>
+
+        <div class="oto-pkg-grid">
+          <div class="oto-pkg-card">
+            <span class="oto-pkg-badge">Lekcje wideo</span>
+            <h4 class="oto-pkg-title">Ekran krok po kroku</h4>
+            <p class="oto-pkg-desc">Pokazuję mój ekran. Zobaczysz, jak wgrać zwykłe zdjęcie z telefonu do narzędzia AI i wyciągnąć z niego profesjonalny portret biznesowy.</p>
+          </div>
+          <div class="oto-pkg-card">
+            <span class="oto-pkg-badge">Materiały</span>
+            <h4 class="oto-pkg-title">Biblioteka Promptów</h4>
+            <p class="oto-pkg-desc">Skopiuj i wklej moje sprawdzone komendy do sztucznej inteligencji, aby uzyskać idealne oświetlenie, tło i profesjonalny wygląd.</p>
+          </div>
+          <div class="oto-pkg-card">
+            <span class="oto-pkg-badge bonus">Super Bonus</span>
+            <h4 class="oto-pkg-title">Lifting profili + Canva</h4>
+            <p class="oto-pkg-desc">Krótki poradnik, jak jednym kliknięciem usunąć tło ze zdjęcia i wkleić je na estetyczną, kolorową grafikę. Szablony w Canwie dołączone.</p>
+          </div>
+        </div>
+
+        <div class="pricing-offer-box">
+          <span class="pricing-badge">Oferta specjalna OTO</span>
+          <div class="price-regular">Cena regularna: <del>199 PLN</del></div>
+          <div class="price-current">67 PLN <span style="font-size: 1.4rem; font-weight: 400; color: var(--text-secondary);">brutto</span></div>
+          <a href="#" id="oto-buy-btn" class="btn btn-accent btn-large" style="width: 100%; font-size: 1.1rem;">
+            <span>TAK! CHCĘ ZROBIĆ SESJĘ FOTO Z AI ZA 67 PLN →</span>
+          </a>
+          <div class="payment-methods">
+            <span>✓ Bezpieczna płatność BLIK, PayU, Karta</span>
+            <span>·</span>
+            <span>✓ Natychmiastowy dostęp 24/7</span>
+          </div>
+        </div>
+
+        <div class="decline-link-wrapper">
+          <a onclick="window.switchView('view-thankyou');" class="decline-link">
+            Nie, dziękuję. Wolę budować biznes online bez profesjonalnego wizerunku i płacić setki złotych fotografom w przyszłości. Przejdź do podsumowania zapisu na webinar.
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /view-oto -->
+
+
+  <!-- ============================================================
+       KROK 3 — PODZIĘKOWANIA
+       ============================================================ -->
+  <div id="view-thankyou" class="page-view">
+    <section>
+      <div class="container">
+        <div class="thank-you-box">
+          <div class="success-badge">
+            <svg width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <h2 class="thank-you-title">Gratulacje! Rejestracja zakończona sukcesem.</h2>
+          <p class="thank-you-desc">
+            Twoje miejsce na webinarze „Od tablicy do biznesu online" jest bezpieczne. Wszystkie informacje organizacyjne wraz z linkiem do transmisji wysłaliśmy na Twój adres e-mail.
+          </p>
+          <div class="info-cards">
+            <div class="info-card">
+              <div class="info-card-title">Kiedy startujemy?</div>
+              <div class="info-card-text">30 czerwca (wtorek) o godz. 20:00. Zarezerwuj sobie około 90 minut.</div>
+            </div>
+            <div class="info-card">
+              <div class="info-card-title">Twój e-book</div>
+              <div class="info-card-text">Link do pobrania e-booka „Narzędziownik Nauczyciela" znajdziesz w wiadomości powitalnej.</div>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px; align-items: center;">
+            <a href="https://calendar.google.com/" target="_blank" class="btn btn-primary" style="width: 100%; max-width: 380px;">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+              <span>Dodaj do Kalendarza Google</span>
+            </a>
+            <a href="#" onclick="window.switchView('view-webinar');" class="btn btn-secondary" style="font-size: 0.85rem;">
+              Powrót do strony głównej
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div><!-- /view-thankyou -->
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <a href="#" class="footer-logo">
+        <img src="ANO_podstawowa_zielony_1_poziom.png" alt="Akademia Nauczyciela Online">
+      </a>
+      <div class="footer-links">
+        <a href="#" id="open-privacy" class="footer-link">Polityka Prywatności</a>
+        <a href="#" class="footer-link">Regulamin Strony</a>
+        <a href="#" class="footer-link">Kontakt</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Akademia Edu Biznesu · Klaudia Rogalska-Kalota. Wszelkie prawa zastrzeżone.</p>
+    </div>
+  </footer>
+
+  <!-- Modal: Polityka Prywatności -->
+  <div class="modal-overlay" id="modal-privacy">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h2>Polityka prywatności</h2>
+        <button class="modal-close" id="close-privacy" aria-label="Zamknij">✕</button>
+      </div>
+      <div class="modal-body">
+        <h3>Administrator danych</h3>
+        <p>Administratorem danych osobowych jest Klaudia Rogalska-Kalota, prowadząca działalność pod nazwą Akademia Nauczyciela Online. Kontakt: kontakt@klaudiarogalska.pl</p>
+
+        <h3>Zakres i cel przetwarzania</h3>
+        <p>Dane osobowe (imię, adres e-mail) zbierane są wyłącznie w celu realizacji rejestracji na webinar oraz komunikacji związanej z wydarzeniem i ofertą Akademii. Podstawą przetwarzania jest art. 6 ust. 1 lit. b RODO (realizacja usługi) oraz art. 6 ust. 1 lit. a RODO (zgoda — dla komunikacji marketingowej).</p>
+
+        <h3>Pliki cookies</h3>
+        <p>Serwis korzysta z plików cookies niezbędnych do jego działania. Cookies analityczne (Google Analytics) są używane wyłącznie za Twoją zgodą. Możesz zarządzać cookies w ustawieniach przeglądarki.</p>
+
+        <h3>Prawa użytkownika</h3>
+        <p>Przysługuje Ci prawo dostępu do danych, sprostowania, usunięcia, ograniczenia przetwarzania, przenoszenia danych oraz wniesienia sprzeciwu wobec przetwarzania. Możesz też wnieść skargę do Prezesa UODO (uodo.gov.pl).</p>
+
+        <h3>Okres przechowywania</h3>
+        <p>Dane przechowujemy przez czas niezbędny do realizacji webinaru i — w przypadku wyrażonej zgody — przez czas prowadzenia komunikacji marketingowej (do cofnięcia zgody). Dane rozliczeniowe przechowywane są przez okres wymagany przepisami podatkowymi (5 lat).</p>
+
+        <h3>Kontakt</h3>
+        <p>W sprawach dotyczących danych osobowych możesz kontaktować się pod adresem: kontakt@klaudiarogalska.pl</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="js/gsap-animations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
