@@ -1270,6 +1270,21 @@ section[id], [id="zapisz-sie"] {
 }
 .info-card-text { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.55; }
 
+.ebook-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(240,180,41,0.10);
+  border: 1px solid rgba(240,180,41,0.30);
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: 0.86rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+  text-align: left;
+}
+.ebook-notice strong { color: #b07f0e; }
+
 
 /* ============================================================
    FOOTER
