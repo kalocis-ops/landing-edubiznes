@@ -39,6 +39,8 @@
   /* === GRADIENTY === */
   --gradient-primary: linear-gradient(135deg, #20224d 0%, #44d498 100%);
   --gradient-accent:  linear-gradient(135deg, #44d498 0%, #5ee8af 100%);
+  /* ciemniejsza mięta — dla tekstu na jasnych/szklanych tłach */
+  --gradient-accent-deep: linear-gradient(135deg, #128a5c 0%, #2eb681 100%);
   --gradient-vip:     linear-gradient(135deg, #7c4dff 0%, #c040fb 100%);
   --gradient-soft:    linear-gradient(135deg, rgba(68,212,152,.06) 0%, rgba(32,34,77,.04) 100%);
   --gradient-mesh-1:  radial-gradient(at 15% 25%, rgba(68,212,152,.05) 0px, transparent 60%);

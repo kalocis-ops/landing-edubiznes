@@ -12,7 +12,8 @@
   font-size: 0.95rem;
   letter-spacing: 0.04em;
   border-radius: var(--radius-full);
-  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease, border-color 0.22s ease, opacity 0.22s ease;
+  /* transform z lekką sprężynką = subtelne "wyskoczenie" na hover */
+  transition: transform 0.25s cubic-bezier(0.34, 1.4, 0.64, 1), box-shadow 0.25s ease, background 0.22s ease, border-color 0.22s ease, opacity 0.22s ease;
   position: relative;
   overflow: hidden;
   text-align: center;
@@ -23,6 +24,13 @@
 
 .btn-large { padding: 18px 48px; font-size: 1.05rem; }
 
+/* Mobile: długie etykiety CTA mogą się zawijać zamiast wystawać poza ekran
+   (poza CTA w headerze, które ma zostać w jednej linii) */
+@media (max-width: 576px) {
+  .btn:not(.nav-cta) { white-space: normal; }
+  .btn-large { padding: 16px 28px; font-size: 0.98rem; }
+}
+
 /* Primary — mint gradient, dark text */
 .btn-primary {
   background: var(--gradient-accent);
@@ -30,10 +38,10 @@
   box-shadow: var(--shadow-glow);
 }
 .btn-primary:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.04);
   box-shadow: 0 10px 32px rgba(68,212,152,.35);
 }
-.btn-primary:active { transform: translateY(0); }
+.btn-primary:active { transform: translateY(0) scale(0.98); }
 
 /* Accent — same as primary for ANO */
 .btn-accent {
@@ -42,15 +50,15 @@
   box-shadow: var(--shadow-glow-accent);
 }
 .btn-accent:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.04);
   box-shadow: 0 10px 32px rgba(68,212,152,.32);
 }
-.btn-accent:active { transform: translateY(0); }
+.btn-accent:active { transform: translateY(0) scale(0.98); }
 
 /* Secondary — outlined */
 .btn-secondary {
   background: transparent;
-  border: 1.5px solid rgba(242,241,234,.18);
+  border: 1.5px solid var(--border-subtle);
   color: var(--text-secondary);
 }
 .btn-secondary:hover {
@@ -131,8 +139,8 @@
   position: relative;
   flex-shrink: 0;
   height: 20px; width: 20px;
-  background: var(--bg-tertiary);
-  border: 1.5px solid rgba(255,255,255,.14);
+  background: var(--bg-secondary);
+  border: 1.5px solid rgba(28,28,46,.25);
   border-radius: 4px;
   margin-top: 1px;
   transition: all var(--transition-fast);
@@ -265,13 +273,19 @@
 .calc-label {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 0.92rem;
   color: var(--text-primary);
   margin-bottom: 13px;
 }
-.calc-val { color: var(--color-primary); }
+.calc-val {
+  color: var(--color-primary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
 
 .calc-slider {
   -webkit-appearance: none;
@@ -366,15 +380,15 @@
   align-items: center;
 }
 .countdown-box {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(68,212,152,0.25);
   border-radius: var(--radius-md);
   width: 78px;
   padding: 12px;
   text-align: center;
   transition: border-color var(--transition-normal);
 }
-.countdown-box:hover { border-color: var(--border-mint); }
+.countdown-box:hover { border-color: rgba(68,212,152,0.5); }
 .countdown-num {
   font-family: var(--font-heading);
   font-weight: 900;
@@ -387,7 +401,7 @@
   font-size: 0.62rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--text-muted);
+  color: rgba(255,255,255,0.45);
   margin-top: 4px;
 }
 
@@ -602,3 +616,8 @@ input, textarea, select { cursor: text; }
 }
 .modal-body h3:first-child { margin-top: 0; }
 .modal-body p { margin-bottom: 10px; }
+
+/* Drugi formularz zapisu — ciemne tło */
+#webinar-signup-form-2 .form-input::placeholder { color: rgba(255,255,255,0.35); }
+#webinar-signup-form-2 .form-input:focus { border-color: var(--color-primary); background: rgba(255,255,255,0.12); }
+#webinar-signup-form-2 .checkbox-container { color: rgba(255,255,255,0.75); }

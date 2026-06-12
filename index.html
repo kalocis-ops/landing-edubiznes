@@ -6,15 +6,50 @@
   <title>Od Tablicy do Biznesu Online — Darmowy Webinar | Klaudia Rogalska-Kalota</title>
   <meta name="description" content="Dowiedz się, jak zamienić swoją wiedzę nauczycielską w dochodowy e-book, kurs lub subskrypcję z pomocą AI. Zarejestruj się bezpłatnie na webinar 30 czerwca.">
 
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/components.css">
+  <!-- Social sharing (Open Graph + Twitter) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Od Tablicy do Biznesu Online — Darmowy Webinar">
+  <meta property="og:description" content="Jak stworzyć produkt cyfrowy, który wygeneruje Twoją drugą pensję (z pomocą AI). Webinar na żywo 30 czerwca o 20:00 — udział bezpłatny.">
+  <meta property="og:url" content="https://webinar.klaudiarogalska.pl/">
+  <meta property="og:image" content="https://webinar.klaudiarogalska.pl/assets/hero-klaudia.jpg">
+  <meta property="og:locale" content="pl_PL">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" href="ANO_podstawowa_zielony_1_pion.png">
+
+  <!-- Fonty: preconnect + link zamiast @import = szybszy pierwszy render -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Source+Sans+3:wght@300;400;500;600&display=swap">
+
+  <!-- Najważniejszy obraz strony ładuje się od razu -->
+  <link rel="preload" as="image" href="assets/hero-klaudia.jpg" media="(min-width: 641px)">
+  <link rel="preload" as="image" href="assets/hero-klaudia-mobile.jpg" media="(max-width: 640px)">
+
+  <link rel="stylesheet" href="css/variables.css?v=13">
+  <link rel="stylesheet" href="css/reset.css?v=13">
+  <link rel="stylesheet" href="css/main.css?v=13">
+  <link rel="stylesheet" href="css/components.css?v=13">
+
+  <!-- Dane strukturalne: Google może pokazać webinar jako wydarzenie w wynikach -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Od Tablicy do Biznesu Online — darmowy webinar",
+    "description": "Jak stworzyć produkt cyfrowy, który wygeneruje Twoją drugą pensję (z pomocą AI). Bez rzucania etatu i bez barier technologicznych.",
+    "startDate": "2026-06-30T20:00:00+02:00",
+    "endDate": "2026-06-30T21:30:00+02:00",
+    "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "location": { "@type": "VirtualLocation", "url": "https://webinar.klaudiarogalska.pl" },
+    "isAccessibleForFree": true,
+    "organizer": { "@type": "Person", "name": "Klaudia Rogalska-Kalota" },
+    "performer": { "@type": "Person", "name": "Klaudia Rogalska-Kalota" }
+  }
+  </script>
 </head>
 <body>
-
-  <!-- Hidden iframe for GetResponse -->
-  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
   <!-- ============================================================
        NAVIGATION
@@ -30,7 +65,7 @@
         <a href="#kalkulator" class="nav-item">Oblicz zysk</a>
         <a href="#opinie"     class="nav-item">Opinie</a>
         <a href="#faq"        class="nav-item">FAQ</a>
-        <a href="#zapisz-sie" class="btn btn-primary" style="padding: 10px 22px; font-size: 0.85rem;">
+        <a href="#zapisz-sie" class="btn btn-primary nav-cta">
           <span>Zapisz się bezpłatnie</span>
         </a>
       </nav>
@@ -46,21 +81,52 @@
     <!-- ─── HERO ─── -->
     <section class="hero-section">
 
-      <!-- Fullbleed background photo -->
+      <!-- Fullbleed background: wideo sterowane scrollem (desktop), foto na mobile -->
       <div class="hero-media">
-        <img src="2O9A0761.jpg" alt="Klaudia Rogalska-Kalota">
+        <video class="hero-video" src="assets/vidhero-scrub.mp4" poster="assets/vidhero-poster.jpg"
+               muted playsinline preload="auto" disablepictureinpicture aria-hidden="true"></video>
+        <picture class="hero-photo">
+          <source media="(max-width: 640px)" srcset="assets/hero-klaudia-mobile.jpg">
+          <img src="assets/hero-klaudia.jpg" alt="Klaudia Rogalska-Kalota" fetchpriority="high">
+        </picture>
+      </div>
+
+      <!-- Pływające social proof -->
+      <div class="hero-float hero-float-1" aria-hidden="true"><span>★★★★★ &nbsp;97% poleca szkolenia</span></div>
+      <div class="hero-float hero-float-2" aria-hidden="true"><span><strong>12 000+</strong> przeszkolonych nauczycieli</span></div>
+      <div class="hero-float hero-float-3" aria-hidden="true"><span><strong>130 000</strong> obserwujących na Instagramie</span></div>
+
+      <!-- Pasek postępu obrotu -->
+      <div class="hero-progress" aria-hidden="true"><div class="hero-progress-fill"></div></div>
+
+      <!-- Przycisk skip intro -->
+      <button class="hero-skip" id="heroSkip" aria-label="Pomiń intro">
+        <svg class="hero-skip-ring" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle class="hero-skip-ring-bg" cx="24" cy="24" r="20"/>
+          <circle class="hero-skip-ring-fill" cx="24" cy="24" r="20"/>
+        </svg>
+        <span class="hero-skip-x">✕</span>
+      </button>
+
+      <!-- Wskazówka scroll -->
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span>Przewiń</span>
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+        </svg>
       </div>
 
       <!-- Content over gradient -->
       <div class="container hero-grid">
         <div class="hero-content">
 
-          <span class="hero-pre-headline">Darmowy webinar szkoleniowy dla nauczycieli i edukatorów</span>
-
-          <h1 class="hero-headline">
-            Od tablicy<br>
-            <span class="text-gradient">do biznesu<br>online.</span>
-          </h1>
+          <div class="hero-headline-box">
+            <span class="hero-pre-headline">Darmowy webinar szkoleniowy</span>
+            <h1 class="hero-headline">
+              Od tablicy<br>
+              <span class="text-gradient">do biznesu<br>online.</span>
+            </h1>
+          </div>
 
           <p class="hero-subheadline">
             Jak stworzyć produkt cyfrowy, który wygeneruje Twoją drugą pensję (z pomocą AI). Bez rzucania etatu i bez barier technologicznych.
@@ -96,9 +162,18 @@
             </div>
           </div>
 
+          <div class="hero-countdown" id="hero-countdown" hidden>
+            Do webinaru zostało: <strong id="hero-countdown-days">—</strong>
+          </div>
+
           <a href="#zapisz-sie" class="btn btn-primary btn-large">
             <span>Rezerwuję bezpłatne miejsce →</span>
           </a>
+
+          <div class="hero-trust">
+            <span class="hero-trust-stars">★★★★★</span>
+            <span>Zaufało mi już <strong>12 000+ nauczycieli</strong> · społeczność <strong>130 000</strong> na Instagramie</span>
+          </div>
 
         </div>
       </div>
@@ -106,19 +181,16 @@
 
 
     <!-- ─── REJESTRACJA (FORM) ─── -->
-    <section id="zapisz-sie" style="background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <section id="zapisz-sie" style="background: linear-gradient(135deg, rgba(68,212,152,.09) 0%, rgba(32,34,77,.06) 100%); border-top: 2px solid rgba(68,212,152,.35); border-bottom: 2px solid rgba(68,212,152,.35);">
       <div class="container-narrow">
-        <div class="glass-card" style="border-color: var(--border-mint);">
+        <div class="glass-card" style="border-color: rgba(68,212,152,.5); box-shadow: 0 8px 48px rgba(68,212,152,.14), 0 2px 16px rgba(32,34,77,.10);">
           <div style="text-align: center; margin-bottom: 28px;">
             <span class="section-label" style="display: block; margin-bottom: 8px;">Rejestracja</span>
             <h2 style="font-size: 1.75rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 10px; color: var(--color-secondary);">Zarezerwuj swoje darmowe miejsce</h2>
             <p style="color: var(--text-secondary); font-size: 0.92rem;">Wypełnij poniższe dane — natychmiastowe potwierdzenie + e-book w bonusie.</p>
           </div>
 
-          <form id="webinar-signup-form" action="https://app.getresponse.com/add_subscriber.html" method="post" target="hidden_iframe">
-            <input type="hidden" name="campaign_token" value="YOUR_CAMPAIGN_TOKEN_HERE">
-            <input type="hidden" name="thank_you_url" value="">
-
+          <form id="webinar-signup-form">
             <div class="form-group">
               <label for="field-name" style="display:block; font-weight: 700; font-family: var(--font-heading); margin-bottom: 7px; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-secondary);">Imię *</label>
               <input type="text" name="name" id="field-name" class="form-input" placeholder="Wpisz swoje imię..." required>
@@ -130,7 +202,7 @@
             </div>
 
             <label class="checkbox-container">
-              <input type="checkbox" id="field-terms" required checked>
+              <input type="checkbox" id="field-terms" required>
               <span class="checkmark"></span>
               <span style="font-size: 0.82rem; line-height: 1.45; display: block;">
                 Zapisuję się na darmowy webinar i akceptuję regulamin strony oraz politykę prywatności.
@@ -159,7 +231,7 @@
 
 
     <!-- ─── DLA KOGO ─── -->
-    <section id="dla-kogo" class="reveal-hidden">
+    <section id="dla-kogo" class="reveal-hidden" style="background: rgba(32,34,77,0.06); border-top: 1px solid rgba(32,34,77,0.12); border-bottom: 1px solid rgba(32,34,77,0.12);">
       <div class="container">
         <div class="section-title-wrapper">
           <span class="section-label">Dla kogo?</span>
@@ -203,7 +275,7 @@
 
 
     <!-- ─── PROGRAM ─── -->
-    <section id="program" class="reveal-hidden" style="background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <section id="program" class="reveal-hidden" style="background: linear-gradient(180deg, rgba(68,212,152,.05) 0%, var(--bg-secondary) 40%); border-top: 1px solid rgba(68,212,152,.25); border-bottom: 1px solid var(--border-subtle);">
       <div class="container learn-grid">
         <div>
           <span class="section-label">Konkretna wiedza</span>
@@ -283,13 +355,20 @@
 
         <div class="bonus-box">
           <div style="display: flex; justify-content: center;">
-            <img src="assets/ebook_mockup.png" alt="Narzędziownik Nauczyciela E-book" style="width: 200px; max-width: 100%;">
+            <div class="ebook-tablet-frame">
+              <div class="ebook-tablet-topbar">
+                <div class="ebook-tablet-camera"></div>
+              </div>
+              <div class="ebook-tablet-screen">
+                <img src="assets/ebook-narzedzownik-edu.png" alt="E-book Narzedzownik Edu - przedsiebiorcy" loading="lazy" decoding="async">
+              </div>
+            </div>
           </div>
           <div>
             <span class="bonus-badge">Główny Bonus</span>
-            <h3 class="bonus-title">E-book „Narzędziownik Nauczyciela"</h3>
+            <h3 class="bonus-title">E-book „Narzędziownik Edu - przedsiębiorcy"</h3>
             <p style="color: var(--text-secondary); line-height: 1.72; font-size: 1rem; margin-bottom: 24px;">
-              Dla każdej osoby, która pojawi się na webinarze na żywo w dniu 30 czerwca przygotowałam bonus w postaci e-booka z listą i opisem narzędzi, których używam do prowadzenia biznesu online.
+              Dla każdej osoby, która pojawi się na żywo 30 czerwca, przygotowałam e-book z listą narzędzi i aplikacji, których sama używam do prowadzenia biznesu edukacyjnego online. Konkretne linki, opis i moje rekomendacje w jednym miejscu.
             </p>
             <a href="#zapisz-sie" class="btn btn-accent">
               <span>Zarejestruj się, aby odebrać e-book →</span>
@@ -341,7 +420,7 @@
       <div class="bio-sticky-inner">
 
         <div class="bio-sticky-left">
-          <img class="bio-sticky-photo" src="2O9A0785.jpg" alt="Klaudia Rogalska-Kalota">
+          <img class="bio-sticky-photo" src="assets/bio-omnie.jpg" alt="Klaudia Rogalska-Kalota" loading="lazy" decoding="async">
         </div>
 
         <div class="bio-sticky-right">
@@ -379,7 +458,7 @@
 
 
     <!-- ─── OPINIE ─── -->
-    <section id="opinie" class="reveal-hidden" style="background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <section id="opinie" class="reveal-hidden" style="background: rgba(32,34,77,0.05); border-top: 1px solid rgba(32,34,77,0.10); border-bottom: 1px solid rgba(32,34,77,0.10);">
       <div class="container">
         <div class="section-title-wrapper" style="text-align: center;">
           <span class="section-label">Sukcesy uczestników</span>
@@ -569,6 +648,66 @@
       </div>
     </section>
 
+    <!-- ─── DRUGI ZAPIS (finałowe CTA) ─── -->
+    <section id="zapisz-sie-2" class="reveal-hidden" style="background: var(--color-secondary); padding: 80px 0;">
+      <div class="container-narrow">
+        <div style="text-align: center; margin-bottom: 40px;">
+          <span style="font-family: var(--font-heading); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 3.5px; color: var(--color-primary); display: block; margin-bottom: 14px;">Rejestracja</span>
+          <h2 style="font-size: clamp(1.8rem,3.5vw,2.6rem); font-weight: 800; letter-spacing: -0.02em; color: #fff; margin-bottom: 12px;">Dołącz do webinaru — to nadal bezpłatne</h2>
+          <p style="color: rgba(255,255,255,0.6); font-size: 1rem; line-height: 1.65;">30 czerwca · wtorek · 20:00 · transmisja online</p>
+        </div>
+
+        <div class="glass-card" style="background: rgba(255,255,255,0.05); border-color: rgba(68,212,152,.40); box-shadow: 0 8px 48px rgba(0,0,0,.25);">
+          <form id="webinar-signup-form-2">
+            <div class="form-group">
+              <label for="field-name-2" style="display:block; font-weight: 700; font-family: var(--font-heading); margin-bottom: 7px; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.55);">Imię *</label>
+              <input type="text" name="name" id="field-name-2" class="form-input" placeholder="Wpisz swoje imię..." required style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: #fff;">
+            </div>
+
+            <div class="form-group">
+              <label for="field-email-2" style="display:block; font-weight: 700; font-family: var(--font-heading); margin-bottom: 7px; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.55);">Adres e-mail *</label>
+              <input type="email" name="email" id="field-email-2" class="form-input" placeholder="Twój najlepszy e-mail..." required style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: #fff;">
+            </div>
+
+            <label class="checkbox-container" style="color: rgba(255,255,255,0.75);">
+              <input type="checkbox" id="field-terms-2" required>
+              <span class="checkmark"></span>
+              <span style="font-size: 0.82rem; line-height: 1.45; display: block;">
+                Zapisuję się na darmowy webinar i akceptuję regulamin strony oraz politykę prywatności.
+              </span>
+            </label>
+
+            <div class="checkbox-vip-container">
+              <label class="checkbox-container" style="margin-bottom: 0; color: rgba(255,255,255,0.75);">
+                <input type="checkbox" name="custom_vip" id="field-vip-2">
+                <span class="checkmark" style="margin-top: 0;"></span>
+                <span style="font-size: 0.86rem; line-height: 1.45; display: block; margin-top: -1px;">
+                  <span class="vip-badge">VIP Lista</span>
+                  <span class="vip-text-main">Chcę dołączyć do listy VIP nowej edycji Akademii Edu Biznesu.</span>
+                  Zaznacz, jeśli chcesz otrzymać ofertę premium przed innymi, na najlepszych warunkach i zyskać szansę na bezpłatną konsultację 1:1.
+                </span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-large btn-submit" style="width: 100%;">
+              <span>ZAPISZ SIĘ BEZPŁATNIE →</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mobilny pasek CTA — widoczny po przescrollowaniu sekcji hero -->
+    <div class="mobile-cta-bar" id="mobile-cta-bar">
+      <div class="mobile-cta-info">
+        <strong>Darmowy webinar</strong>
+        <span>30 czerwca · 20:00</span>
+      </div>
+      <a href="#zapisz-sie" class="btn btn-primary" style="padding: 12px 24px; font-size: 0.88rem;">
+        <span>Zapisz się</span>
+      </a>
+    </div>
+
   </div><!-- /view-webinar -->
 
 
@@ -630,7 +769,7 @@
           </p>
         </div>
         <div>
-          <img src="assets/ai_photos_mockup.png" alt="Wizualizacja sesji zdjęciowej z AI" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); width: 100%;">
+          <img src="assets/ai_photos_mockup.png" alt="Wizualizacja sesji zdjęciowej z AI" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); width: 100%;" loading="lazy" decoding="async">
         </div>
       </div>
     </section>
@@ -665,7 +804,7 @@
           <span class="pricing-badge">Oferta specjalna OTO</span>
           <div class="price-regular">Cena regularna: <del>199 PLN</del></div>
           <div class="price-current">67 PLN <span style="font-size: 1.4rem; font-weight: 400; color: var(--text-secondary);">brutto</span></div>
-          <a href="#" id="oto-buy-btn" class="btn btn-accent btn-large" style="width: 100%; font-size: 1.1rem;">
+          <a href="#" id="oto-buy-btn" class="btn btn-accent btn-large" style="width: 100%; font-size: 0.9rem; white-space: normal; line-height: 1.4;">
             <span>TAK! CHCĘ ZROBIĆ SESJĘ FOTO Z AI ZA 67 PLN →</span>
           </a>
           <div class="payment-methods">
@@ -677,7 +816,7 @@
 
         <div class="decline-link-wrapper">
           <a onclick="window.switchView('view-thankyou');" class="decline-link">
-            Nie, dziękuję. Wolę budować biznes online bez profesjonalnego wizerunku i płacić setki złotych fotografom w przyszłości. Przejdź do podsumowania zapisu na webinar.
+            Nie, dziękuję — na razie rezygnuję z sesji AI. Przejdź do podsumowania zapisu na webinar.
           </a>
         </div>
       </div>
@@ -713,7 +852,7 @@
             </div>
           </div>
           <div style="display: flex; flex-direction: column; gap: 14px; align-items: center;">
-            <a href="https://calendar.google.com/" target="_blank" class="btn btn-primary" style="width: 100%; max-width: 380px;">
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Webinar%3A%20Od%20Tablicy%20do%20Biznesu%20Online&dates=20260630T180000Z/20260630T193000Z&details=Darmowy%20webinar%20Klaudii%20Rogalskiej-Kaloty.%20Link%20do%20transmisji%20znajdziesz%20w%20mailu%20potwierdzaj%C4%85cym." target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%; max-width: 380px;">
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
               </svg>
@@ -738,7 +877,7 @@
       <div class="footer-links">
         <a href="#" id="open-privacy" class="footer-link">Polityka Prywatności</a>
         <a href="#" class="footer-link">Regulamin Strony</a>
-        <a href="#" class="footer-link">Kontakt</a>
+        <a href="mailto:kontakt@klaudiarogalska.pl" class="footer-link">Kontakt</a>
       </div>
       <p class="footer-copy">&copy; 2026 Akademia Edu Biznesu · Klaudia Rogalska-Kalota. Wszelkie prawa zastrzeżone.</p>
     </div>
@@ -776,7 +915,7 @@
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="js/gsap-animations.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/gsap-animations.js?v=13"></script>
+  <script src="js/main.js?v=13"></script>
 </body>
 </html>

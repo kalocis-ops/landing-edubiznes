@@ -6,7 +6,62 @@ document.addEventListener('DOMContentLoaded', () => {
   initTestimonialsSlider();
   initScrollReveal();
   initPrivacyModal();
+  initMobileCtaBar();
+  initWebinarCountdown();
+  initViewRouting();
 });
+
+/* 0b. PODGLĄD WIDOKÓW PRZEZ URL
+   Produkcja: /oto, /dziekuje (rewrite w _redirects)
+   Lokalnie:  #oto, #dziekuje */
+function initViewRouting() {
+  const path = window.location.pathname.replace(/\/+$/, '');
+  const hash = window.location.hash;
+
+  if (path.endsWith('/oto') || hash === '#oto') {
+    window.switchView('view-oto');
+  } else if (path.endsWith('/dziekuje') || path.endsWith('/dziekujemy') || hash === '#dziekuje') {
+    window.switchView('view-thankyou');
+  }
+}
+
+/* WEBINAR COUNTDOWN — "Do webinaru zostało: X dni" */
+function initWebinarCountdown() {
+  const box = document.getElementById('hero-countdown');
+  const daysEl = document.getElementById('hero-countdown-days');
+  if (!box || !daysEl) return;
+
+  const webinarDate = new Date('2026-06-30T20:00:00+02:00');
+  const msLeft = webinarDate - new Date();
+  if (msLeft <= 0) return; // po webinarze licznik zostaje ukryty
+
+  const days = Math.ceil(msLeft / 86400000);
+  if (days === 1) daysEl.textContent = '1 dzień';
+  else daysEl.textContent = days + ' dni';
+  box.hidden = false;
+}
+
+/* 0. MOBILE STICKY CTA BAR — shows after scrolling past the hero */
+function initMobileCtaBar() {
+  const bar = document.getElementById('mobile-cta-bar');
+  const hero = document.querySelector('.hero-section');
+  const formSection = document.getElementById('zapisz-sie');
+  if (!bar || !hero) return;
+
+  const update = () => {
+    const heroBottom = hero.getBoundingClientRect().bottom;
+    // Hide the bar while the signup form itself is on screen
+    let formVisible = false;
+    if (formSection) {
+      const r = formSection.getBoundingClientRect();
+      formVisible = r.top < window.innerHeight && r.bottom > 0;
+    }
+    bar.classList.toggle('visible', heroBottom < 0 && !formVisible);
+  };
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+}
 
 /* 1. SPA VIEW NAVIGATION WITH VIEW TRANSITIONS */
 function initNavigation() {
@@ -81,65 +136,58 @@ function updateDOMViews(views, activeViewId) {
   }
 }
 
-/* 2. GETRESPONSE FORM INTERCEPTION & POSTING */
-function initFormHandler() {
-  const form = document.getElementById('webinar-signup-form');
+/* 2. FORM → NETLIFY FUNCTION → GETRESPONSE API */
+function setupSignupForm(formId, nameId, emailId, vipId) {
+  const form = document.getElementById(formId);
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
     const btn = form.querySelector('.btn-submit');
-    const nameInput = document.getElementById('field-name');
-    const emailInput = document.getElementById('field-email');
-    const termsCheck = document.getElementById('field-terms');
+    const nameInput = document.getElementById(nameId);
+    const emailInput = document.getElementById(emailId);
+    const vipCheck = document.getElementById(vipId);
 
-    // Basic validation
-    if (!nameInput.value.trim() || !emailInput.value.trim()) {
-      alert('Proszę wypełnić wszystkie pola.');
-      e.preventDefault();
-      return;
-    }
-
-    if (!termsCheck.checked) {
-      alert('Proszę zaakceptować regulamin strony.');
-      e.preventDefault();
-      return;
-    }
-
-    // Visual loading state
     if (btn) {
       btn.disabled = true;
       btn.style.opacity = '0.7';
-      btn.innerHTML = 'Rejestracja...';
+      btn.innerHTML = '<span>Rejestracja...</span>';
     }
 
-    // Since the form has target="hidden_iframe", it will submit asynchronously
-    // We listen to the iframe load event or set a timeout to trigger the transition
-    const iframe = document.getElementById('hidden_iframe');
-    
-    const handleTransition = () => {
-      // Transition to Step 2: OTO Page
-      window.switchView('view-oto');
-      
-      // Clean up loading state
+    const restoreBtn = () => {
       if (btn) {
         btn.disabled = false;
         btn.style.opacity = '';
-        btn.innerHTML = 'ZAPISZ SIĘ BEZPŁATNIE >>';
+        btn.innerHTML = '<span>ZAPISZ SIĘ BEZPŁATNIE →</span>';
       }
-      
-      // Remove listener to prevent duplicates
-      iframe.removeEventListener('load', handleTransition);
     };
 
-    iframe.addEventListener('load', handleTransition);
+    try {
+      const res = await fetch('/.netlify/functions/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: nameInput.value.trim(),
+          email: emailInput.value.trim(),
+          vip: !!(vipCheck && vipCheck.checked),
+        }),
+      });
 
-    // Fallback in case iframe load doesn't fire properly (e.g. adblock blocking GETRESPONSE load)
-    setTimeout(() => {
-      if (btn && btn.disabled) {
-        handleTransition();
-      }
-    }, 1500);
+      if (!res.ok) throw new Error('subscribe failed');
+
+      restoreBtn();
+      window.switchView('view-oto');
+    } catch (err) {
+      restoreBtn();
+      alert('Ups, nie udało się zapisać. Sprawdź połączenie i spróbuj ponownie — a jeśli problem wraca, napisz na kontakt@klaudiarogalska.pl.');
+    }
   });
+}
+
+function initFormHandler() {
+  setupSignupForm('webinar-signup-form', 'field-name', 'field-email', 'field-vip');
+  setupSignupForm('webinar-signup-form-2', 'field-name-2', 'field-email-2', 'field-vip-2');
 }
 
 /* 3. OTO PERSISTENT COUNTDOWN TIMER */
@@ -176,9 +224,7 @@ function startOtoTimer() {
         secEl.textContent = '00';
       }
       
-      // Offer expired logic: redirect to Step 3 thank you page automatically
-      // or change CTA text. Let's make a clean redirect.
-      alert('Oferta limitowana wygasła. Następuje przejście do podsumowania zapisu.');
+      // Oferta wygasła — ciche przejście do podsumowania, bez blokującego alertu
       window.switchView('view-thankyou');
       return;
     }
