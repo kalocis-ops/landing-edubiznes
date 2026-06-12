@@ -1,29 +1,37 @@
 ---
 name: landing-edubiznes-deploy
-description: "Jak deployować landing Edubiznes (dist, Netlify, wersjonowanie cache) i stan domeny webinar.klaudiarogalska.pl"
+description: "Jak deployować landing Edubiznes (CLI z root, nie dist) i stan domeny webinar.klaudiarogalska.pl"
 metadata: 
   node_type: memory
   type: project
-  originSessionId: 4ac0bb73-d39e-4e08-81d4-9e9732db7ff3
+  originSessionId: a356919a-c7a2-4ea8-a8d1-cdc385646f01
 ---
 
 Landing webinaru "Od Tablicy do Biznesu Online" (Klaudia Rogalska-Kalota). Projekt: `/Users/klaudiarogalska/Desktop/landing Edubiznes`.
 
-**Deploy (NIGDY z katalogu głównego — leży tam 320 MB .mov i 60 MB oryginalnych JPG):**
+**Deploy (od 2026-06-12: bezpośrednio z katalogu projektu, NIE z dist):**
 ```bash
-cd "/Users/klaudiarogalska/Desktop/landing Edubiznes" && rm -rf dist && mkdir -p dist \
-  && cp index.html _redirects dist/ && cp -r css js assets dist/ \
-  && cp ANO_podstawowa_zielony_1_poziom.png ANO_podstawowa_zielony_1_pion.png dist/ \
-  && netlify deploy --prod --dir dist --functions netlify/functions
+cd "/Users/klaudiarogalska/Desktop/landing Edubiznes"
+netlify deploy --prod --dir .
 ```
-WAŻNE: `_redirects` musi trafić do dist (rewrites /oto i /dziekuje → index.html).
+Netlify automatycznie pakuje `netlify/functions/`. Plik `_redirects` jest w root — trafia do deployu. Netlify **nie** jest podpięte do GitHub — deploy tylko przez CLI.
 
-**Cache-busting:** przy każdym deployu podbić `?v=N` przy css/js w index.html (stan na 2026-06-10: v=4; po kolejnych zmianach podbić na v=5). Bez tego użytkownicy dostają stare style (raz przez to "zniknął" zielony nagłówek — gradient z niezaładowanej zmiennej CSS).
+**Stary przepis z dist jest nieaktualny** — .gitignore wyklucza `*.mp4`, więc dist nigdy nie zawierało wideo (jest serwowane z root przez Netlify). Deployowanie z root działa i jest prostsze.
 
-**Netlify:** projekt `landing-edubiznes` (siteId c364613f-1311-4c0a-8e09-1ce02fcbe5b0), konto kalocis@gmail.com (Sebastian Kalota). URL: https://landing-edubiznes.netlify.app.
+**Cache-busting:** `?v=N` przy css/js w index.html. Przy dużych zmianach CSS/JS podbić N.
 
-**Domena docelowa:** webinar.klaudiarogalska.pl — ustawiona w Netlify jako custom_domain, ale DNS (hostowany na webd.pl, ns5/ns7.webd.pl) na 2026-06-10 wieczorem wciąż wskazywał CNAME → squeeze.gr8.com (GetResponse). Użytkownik twierdzi, że zmienił na landing-edubiznes.netlify.app — czekaliśmy na publikację strefy. Sprawdzenie: `dig @ns5.webd.pl webinar.klaudiarogalska.pl CNAME +short`. Poprzednia subdomena edubiznes.klaudiarogalska.pl wskazuje na sites.gamma.app (stara strona z Gamma — celowo zostawiona).
+**Netlify:** projekt `landing-edubiznes`, siteId `c364613f-1311-4c0a-8e09-1ce02fcbe5b0`, konto kalocis@gmail.com. URL: https://webinar.klaudiarogalska.pl.
 
-**Podgląd lokalny:** `npx http-server -p 8080 -c-1` — NIE python http.server (brak obsługi HTTP Range → scrubbing wideo nie działa, currentTime wraca do 0). Podgląd widoków SPA: lokalnie `#oto` / `#dziekuje`, na produkcji `/oto` / `/dziekuje`.
+**GitHub:** repo `kalocis-ops/landing-edubiznes`. Push + deploy to dwa osobne kroki — git push nie triggeruje deployu na Netlify.
+
+**Podgląd lokalny:** `npx http-server -p 8080 -c-1` (NIE python http.server — brak HTTP Range → scrubbing wideo nie działa).
+
+**Podgląd widoków SPA:** lokalnie `#oto` / `#dziekuje`, na produkcji `/oto` / `/dziekuje`.
+
+**Memory na nowym komputerze** (po `git clone`):
+```bash
+mkdir -p ~/.claude/projects/-Users-klaudiarogalska-Desktop-landing-Edubiznes/memory
+cp .claude/memory/*.md ~/.claude/projects/-Users-klaudiarogalska-Desktop-landing-Edubiznes/memory/
+```
 
 Zobacz też [[landing-edubiznes-stan]] i [[landing-edubiznes-hero-video]].

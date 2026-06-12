@@ -1,30 +1,35 @@
 ---
 name: landing-edubiznes-stan
-description: "Stan prac nad landingiem Edubiznes na 2026-06-10 — co wdrożone, co czeka na deploy, integracja GetResponse"
+description: "Stan prac nad landingiem Edubiznes na 2026-06-12 — co wdrożone, hero auto-start, pasek ogłoszenia, dziękujemy e-book"
 metadata: 
   node_type: memory
   type: project
-  originSessionId: 4ac0bb73-d39e-4e08-81d4-9e9732db7ff3
+  originSessionId: a356919a-c7a2-4ea8-a8d1-cdc385646f01
 ---
 
-**Stan na 2026-06-11 (wieczór). Produkcja = v=13.**
+**Stan na 2026-06-12. Produkcja live na webinar.klaudiarogalska.pl.**
 
-**Wdrożone w v=12-13 (2026-06-11):** ramka tabletu ebooka w stylu "najnowszy iPad" (jednolite bezele 11px, border #48484d, kamerka absolute w bezelu — .ebook-tablet-* w main.css); menu jako liquid glass floating pill jak w demo-glass-hero (blur+saturate, gradientowy ring ::before z mask-composite, .scrolled tylko zmienia tło pilla; .header-nav top:14px, padding 0 16px); zdjęcie w sekcji "O mnie" podmienione na assets/bio-omnie.jpg (zoptymalizowane z omnie.jpg 14 MB w katalogu głównym → 1200x1800 ~370 KB przez sips; stare assets/bio-klaudia.jpg zostało w repo nieużywane). Przy podmianie obrazków dawać NOWĄ nazwę pliku zamiast nadpisywać (obrazki nie mają ?v=N, cache).
+**Wdrożone 2026-06-12:**
+- **Hero auto-start + skip ring:** animacja startuje od razu po załadowaniu strony (bez czekania na scroll). Scroll zablokowany przez 3 sekundy (D=3). SVG kółko z ✕ w prawym dolnym rogu hero — ring wypełnia się przez 3s, kliknięcie pomija. Wideo scrubuje w tempie 7s (D_VID=7), leci do końca nawet po odblokowaniu scrolla. Szczegóły w [[landing-edubiznes-hero-video]].
+- **Pasek ogłoszenia:** ciemny pasek (#20224d) nad nawigacją, pulsująca bursztynowa kropka + "Uwaga. Ta oferta pojawia się tylko raz." Header-nav przesunięty do top:50px (desktop) / top:42px (mobile ≤576px) żeby dać miejsce.
+- **Strona dziękujemy:** karta "Twój e-book" zaktualizowana + bursztynowy baner z ikoną: "Aby odebrać e-book, musisz pojawić się na webinarze na żywo. Link otrzymasz po zakończeniu transmisji."
+- **Repo uzupełnione:** assets/, netlify/functions/, _redirects, .claude/memory/ — wszystko na GitHubie.
 
-**Weryfikacja zrzutami (headless Chrome na Macu):** min. szerokość okna 500px, crop do --window-size — mobile testować przez iframe o zadanej szerokości + --allow-file-access-from-files; dodawać --force-device-scale-factor=1 (inaczej DPR=2 i viewport o połowę mniejszy). Sekcji bio/dalszych nie da się doscrollować programowo (choreografia GSAP/hero przejmuje scroll) — weryfikować na żywo w przeglądarce.
+**Wdrożone wcześniej (v=13, 2026-06-11):** liquid glass menu pill, ramka iPada dla ebooka, zdjęcie bio-omnie.jpg.
 
-**Wdrożone na produkcji (v=6):** scroll-video hero (autoplay 7s, linear, blokada scrolla przy pierwszym wheel, skip przy drugim), routing SPA (/oto, /dziekuje), GetResponse (main + VIP `fHuoS`), drugi formularz zapisu (#zapisz-sie-2) na navy tle po FAQ, mocniejsze kolory sekcji (zielone/navy akcenty), get-card z lewym zielonym obramowaniem, bonus-box gradient.
+**Deploy:** `netlify deploy --prod --dir .` z katalogu projektu (NIE z dist — zmiana 2026-06-12, stary przepis w deploy-memory był nieaktualny). Netlify nie jest podpięte do GitHub auto-deploy — trzeba odpalać CLI ręcznie.
 
 **Routing SPA:** `webinar.klaudiarogalska.pl/oto` i `/dziekuje` działają. Lokalnie: `#oto` / `#dziekuje` z `npx http-server -p 8080 -c-1`.
 
-**Domena:** webinar.klaudiarogalska.pl działa (DNS zaktualizowany 2026-06-11).
+**Memory na nowym komputerze:** pliki są w repo pod `.claude/memory/`. Po sklonowaniu:
+```bash
+mkdir -p ~/.claude/projects/-Users-klaudiarogalska-Desktop-landing-Edubiznes/memory
+cp .claude/memory/*.md ~/.claude/projects/-Users-klaudiarogalska-Desktop-landing-Edubiznes/memory/
+```
+Ścieżka musi odpowiadać lokalizacji projektu na dysku (np. jeśli projekt jest w `/Users/klaudiarogalska/Desktop/landing Edubiznes`, ścieżka jest `-Users-klaudiarogalska-Desktop-landing-Edubiznes`).
 
-**Bonus:** treść e-booka do zmiany gdy użytkownik potwierdzi nowy tytuł/opis. Plik mockup: `assets/ebook_mockup.png`..
+**GetResponse:** klucz API w env Netlify `GETRESPONSE_API_KEY`. Funkcja traktuje 202 i 409 jako sukces.
 
-**GetResponse:** klucz API w env Netlify `GETRESPONSE_API_KEY` (ustawiony przez netlify env:set). Klucz: 9e9j1p5kimdmbaporeb3j2ubmsfshrtp (podany przez użytkownika w rozmowie). Funkcja traktuje 202 i 409 jako sukces. Zmienna GETRESPONSE_VIP_TAG_ID już nieużywana.
-
-**Otwarte tematy:** użytkownik wspominał o "dodaniu do kalendarza Google" jako kolejnym temacie (przycisk na stronie podziękowania już generuje wydarzenie 30.06 20:00–21:30 przez calendar.google.com/render — może chodzić o coś więcej). Webinar: 30 czerwca 2026, wtorek, 20:00, ~90 min. Licznik dni w hero liczy do tej daty i znika po niej.
-
-**Znane drobiazgi:** strona OTO ma mock płatności (initOtoPurchase w main.js — alert + przejście na podziękowanie) — przed kampanią trzeba podpiąć prawdziwą bramkę. Footer "Regulamin Strony" to martwy link.
+**Znane drobiazgi:** strona OTO ma mock płatności (initOtoPurchase w main.js) — przed kampanią podpiąć prawdziwą bramkę. Footer "Regulamin Strony" to martwy link. Webinar: 30 czerwca 2026, wtorek, 20:00.
 
 Zobacz też [[landing-edubiznes-deploy]] i [[landing-edubiznes-hero-video]].
