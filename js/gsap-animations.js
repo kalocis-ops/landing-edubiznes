@@ -53,11 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
       // bez tego przy pierwszym scrollu poster "przeskakiwał" na kadr wideo
       heroVideo.currentTime = 0.001;
 
-      const D = 3; // całkowity czas animacji w sekundach
+      const D = 3;    // czas blokady scrolla + animacji UI
+      const D_VID = 7; // tempo wideo — takie samo jak wcześniej
       const RING_C = 125.66; // obwód okręgu SVG (2π*20)
       const skipBtn = document.getElementById('heroSkip');
       const ringFill = skipBtn ? skipBtn.querySelector('.hero-skip-ring-fill') : null;
       let tl = null;
+      let videoTween = null;
       let done = false;
 
       const finish = () => {
@@ -65,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         done = true;
         window.removeEventListener('wheel', onLockWheel, { passive: false });
         if (skipBtn) skipBtn.style.display = 'none';
+        if (videoTween) videoTween.kill();
         if (tl) tl.progress(1);
       };
 
@@ -80,10 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
           skipBtn.addEventListener('click', finish, { once: true });
         }
 
+        // Wideo scrubuje w oryginalnym tempie (D_VID=7s), niezależnie od blokady scrolla
+        videoTween = gsap.to(heroVideo, { currentTime: heroVideo.duration, duration: D_VID, ease: 'none' });
+
         tl = gsap.timeline({ onComplete: finish });
 
-        // Wideo i pasek postępu jadą przez cały czas
-        tl.to(heroVideo, { currentTime: heroVideo.duration, duration: D, ease: 'none' }, 0);
+        // Pasek postępu jedzie przez czas blokady (D=3s)
         tl.to('.hero-progress-fill', { scaleX: 1, duration: D, ease: 'none' }, 0);
 
         // Kółko skip: ring wypełnia się od 0 do pełna
