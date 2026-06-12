@@ -67,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
         done = true;
         window.removeEventListener('wheel', onLockWheel, { passive: false });
         if (skipBtn) skipBtn.style.display = 'none';
-        if (videoTween) videoTween.kill();
         if (tl) tl.progress(1);
       };
 
