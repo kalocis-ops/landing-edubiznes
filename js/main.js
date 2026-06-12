@@ -127,12 +127,16 @@ function updateDOMViews(views, activeViewId) {
   // Hide or show the navigation menu links based on the active view
   // On OTO and Thank You pages, we want to minimize distractions (no header links)
   const navLinks = document.querySelector('.nav-links');
+  const navOtoNotice = document.getElementById('navOtoNotice');
   if (navLinks) {
     if (activeViewId === 'view-webinar') {
       navLinks.style.display = '';
     } else {
       navLinks.style.display = 'none';
     }
+  }
+  if (navOtoNotice) {
+    navOtoNotice.style.display = activeViewId === 'view-oto' ? 'flex' : 'none';
   }
 }
 

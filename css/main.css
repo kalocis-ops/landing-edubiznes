@@ -151,6 +151,18 @@ section[id], [id="zapisz-sie"] {
   font-weight: 700;
 }
 
+.nav-oto-notice {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: 0.2px;
+}
+.nav-oto-notice strong { color: #b07f0e; font-weight: 700; }
+
 .header-nav {
   position: fixed;
   top: 50px; left: 0;
