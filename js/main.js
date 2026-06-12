@@ -128,15 +128,15 @@ function updateDOMViews(views, activeViewId) {
   // On OTO and Thank You pages, we want to minimize distractions (no header links)
   const navLinks = document.querySelector('.nav-links');
   const navOtoNotice = document.getElementById('navOtoNotice');
+  const announcementBar = document.querySelector('.announcement-bar');
   if (navLinks) {
-    if (activeViewId === 'view-webinar') {
-      navLinks.style.display = '';
-    } else {
-      navLinks.style.display = 'none';
-    }
+    navLinks.style.display = activeViewId === 'view-webinar' ? '' : 'none';
   }
   if (navOtoNotice) {
     navOtoNotice.style.display = activeViewId === 'view-oto' ? 'flex' : 'none';
+  }
+  if (announcementBar) {
+    announcementBar.style.display = activeViewId === 'view-webinar' ? '' : 'none';
   }
 }
 

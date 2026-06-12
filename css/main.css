@@ -160,6 +160,9 @@ section[id], [id="zapisz-sie"] {
   font-weight: 500;
   color: var(--text-primary);
   letter-spacing: 0.2px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .nav-oto-notice strong { color: #b07f0e; font-weight: 700; }
 
